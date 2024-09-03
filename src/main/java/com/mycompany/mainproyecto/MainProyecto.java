@@ -1,5 +1,7 @@
 package com.mycompany.mainproyecto;
 
+import java.util.Scanner;
+
 
 public class MainProyecto {
 
@@ -52,5 +54,56 @@ public class MainProyecto {
         if(comunaBuscada != null){
             System.out.println("\nComuna encontrada: " + comunaBuscada.getNombre());
         }
+    }
+    public static void gestionDeVotantes(){
+       Scanner lector = new Scanner(System.in);
+
+       while (true){
+        System.out.println("Sistema de Gestión de Votantes");
+        System.out.println("1.- Agregar Votante");
+        System.out.println("2.- Eliminar Votante");
+        System.out.println("3.- Modificar Votante");
+        System.out.println("4.- Salir");
+        System.out.println("Ingrese la opción que desea usar: ");
+        int opcion = lector.nextInt(); 
+        lector.nextLine();
+
+        switch(opcion)
+        {
+            case 1:
+                System.out.println("Ingrese el RUN del votante: ");
+                int runAdd = lector.nextInt();
+                lector.nextLine();
+                System.out.println("Ingrese el Nombre del votante: ");
+                String nombreAdd = lector.nextLine();
+                System.out.println("Ingrese la Comuna del votante: ");
+                String comunaAdd = lector.nextLine();
+                Votante votante = new Votante(runAdd, nombreAdd, comunaAdd);
+                LocalDeSufragio a = new LocalDeSufragio();
+                agregarVotante(votante);
+                break;
+            case 2:
+                System.out.println("Ingrese el RUN del votante a eliminar: ");
+                int runEliminar = lector.nextInt();
+                eliminarVotante(runEliminar);
+                break;
+            case 3:
+                System.out.println("Ingrese el RUN del votante que quiere modificar: ");
+                int runModificar = lector.nextInt();
+                lector.nextLine();
+                System.out.println("Ingrese el nuevo nombre del votante: ");
+                String nombreModificar = lector.nextLine();
+                System.out.println("Ingrese la nueva comuna: ");
+                String comunaModificar = lector.nextLine();
+                modificarVotante(runModificar, nombreModificar, comunaModificar);
+                break;
+            case 4:
+                System.out.println("Saliendo de la modificación!!");
+                lector.close();
+                break;
+            default:
+                System.out.println("Opción no válida, inténtelo de nuevo.");
+        }
+       }
     }
 }
