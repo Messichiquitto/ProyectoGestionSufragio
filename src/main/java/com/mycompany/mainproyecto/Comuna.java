@@ -4,22 +4,12 @@ import java.util.List;
 
 //Listo
 public class Comuna {
-    private int id;
     private String nombre;
     private List<LocalDeSufragio> locales;
     
     public Comuna(int id, String nombre){
-        this.id = id;
         this.nombre = nombre;
         this.locales = new ArrayList<>();
-    }
-    
-    public void setId(int id){
-        this.id = id;
-    }
-    
-    public int getId(){
-        return id;
     }
     
     public void setNombre(String nombre){

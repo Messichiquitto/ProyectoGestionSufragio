@@ -60,11 +60,24 @@ public class LocalDeSufragio {
         }
     }
     
+    public void eliminarVotante(int votante){
+        votantes.remove(votante);
+    }
+    
     public boolean verificarCapacidad(){
         return votantes.size() < capacidadMax;
     }
     
     public List<Votante> obtenerVotantes(){
         return votantes;
+    }
+    
+    public Votante buscarVotantePorRun(int run){
+        for (Votante votante : votantes){
+            if (votante.getRun() == run){
+                return votante;
+            }
+        }
+    return null;
     }
 }
