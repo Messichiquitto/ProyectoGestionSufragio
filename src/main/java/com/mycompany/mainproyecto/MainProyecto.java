@@ -69,7 +69,7 @@ public class MainProyecto {
            Scanner lector = new Scanner(System.in);
 
            while (true){
-            System.out.println("Sistema de Gestión de Votantes");
+            System.out.println("Sistema de Gestion de Votantes");
             System.out.println("1.- Agregar Votante");
             System.out.println("2.- Eliminar Votante");
             System.out.println("3.- Modificar Votante");
@@ -77,14 +77,14 @@ public class MainProyecto {
             System.out.println("5.- Mostrar Todos los Votantes");
             System.out.println("6.- Cargar datos desde Archivos");
             System.out.println("7.- Salir");
-            System.out.println("Ingrese la opción que desea usar: ");
+            System.out.println("Ingrese la opcion que desea usar: ");
             
             int opcion = 0;
             try {
                 opcion = lector.nextInt();
                 lector.nextLine(); // Limpiar el buffer
             } catch (InputMismatchException e) {
-                System.out.println("Entrada no válida. Por favor, ingrese un número.");
+                System.out.println("Entrada no valida. Por favor, ingrese un numero.");
                 lector.nextLine(); // Limpiar el buffer
                 continue;
             }
@@ -121,7 +121,7 @@ public class MainProyecto {
                             System.out.println("Comuna no encontrada.");
                         }
                     } catch (InputMismatchException e) {
-                        System.out.println("Entrada no válida. Por favor, ingrese un número para el RUN.");
+                        System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
                         lector.nextLine(); // Limpiar el buffer
                     }
                     break;
@@ -155,7 +155,7 @@ public class MainProyecto {
                             System.out.println("Comuna no encontrada.");
                         }
                     } catch (InputMismatchException e) {
-                        System.out.println("Entrada no válida. Por favor, ingrese un número para el RUN.");
+                        System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
                         lector.nextLine(); // Limpiar el buffer
                     }
                     break;
@@ -214,7 +214,7 @@ public class MainProyecto {
                             System.out.println("No se pudo modificar el votante.");
                         }
                     } catch (InputMismatchException e) {
-                        System.out.println("Entrada no válida. Por favor, ingrese un número para el RUN.");
+                        System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
                         lector.nextLine(); // Limpiar el buffer
                     }
                     break;
@@ -273,10 +273,10 @@ public class MainProyecto {
                     break;
                 
                 case 6:
-                    String archivoLocales = "resources/archivoLocales.txt";
+                    String archivoLocales = "C:\\Users\\Gabriel\\OneDrive\\Documentos\\GitHub\\ProyectoGestionSufragio\\src\\main\\java\\com\\mycompany\\mainproyecto\\arLocales.txt";
                     mapaComunas.agregarLocalesDesdeArchivo(archivoLocales);
                     
-                    String archivoVotantes = "resources/archivoVotantes.txt";
+                    String archivoVotantes = "C:\\Users\\Gabriel\\OneDrive\\Documentos\\GitHub\\ProyectoGestionSufragio\\src\\main\\java\\com\\mycompany\\mainproyecto\\arVotantes.txt";
                     mapaComunas.asignarVotantesDesdeArchivo(archivoVotantes);
                     break;
                     
@@ -285,7 +285,7 @@ public class MainProyecto {
                     lector.close();
                     return;
                 default:
-                    System.out.println("Opción no válida, inténtelo de nuevo.");
+                    System.out.println("Opcion no valida, intentelo de nuevo.");
             }
            }
         }
