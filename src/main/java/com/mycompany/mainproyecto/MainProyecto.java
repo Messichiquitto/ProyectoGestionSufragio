@@ -281,10 +281,10 @@ public class MainProyecto {
                     break;
                 
                 case 6:
-                    String archivoLocales = "C:\\Users\\Gabriel\\OneDrive\\Documentos\\GitHub\\ProyectoGestionSufragio\\src\\main\\java\\com\\mycompany\\mainproyecto\\arLocales.txt";
+                    String archivoLocales = "https://raw.githubusercontent.com/Messichiquitto/ProyectoGestionSufragio/master/arLocales.txt";
                     mapaComunas.agregarLocalesDesdeArchivo(archivoLocales);
                     
-                    String archivoVotantes = "C:\\Users\\Gabriel\\OneDrive\\Documentos\\GitHub\\ProyectoGestionSufragio\\src\\main\\java\\com\\mycompany\\mainproyecto\\arVotantes.txt";
+                    String archivoVotantes = "https://raw.githubusercontent.com/Messichiquitto/ProyectoGestionSufragio/master/arVotantes.txt";
                     mapaComunas.asignarVotantesDesdeArchivo(archivoVotantes);
                     break;
                     

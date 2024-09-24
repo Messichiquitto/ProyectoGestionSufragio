@@ -1,13 +1,14 @@
 package com.mycompany.mainproyecto;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.io.IOException;
 
 public class GestionArchivo {
 
-    public static void asignarVotantesDesdeArchivo(String archivoVotantes, MapaComunas mapaComunas) {
-        try (BufferedReader br = new BufferedReader(new FileReader(archivoVotantes))) {
+    public static void asignarVotantesDesdeArchivo(String archivoVotantesURL, MapaComunas mapaComunas) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new URL(archivoVotantesURL).openStream()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 // Para formato "run,nombre,comuna"
@@ -24,8 +25,8 @@ public class GestionArchivo {
         }
     }
 
-    public static void agregarLocalesDesdeArchivo(String archivoLocales, MapaComunas mapaComunas) {
-        try (BufferedReader br = new BufferedReader(new FileReader(archivoLocales))) {
+    public static void agregarLocalesDesdeArchivo(String archivoLocalesURL, MapaComunas mapaComunas) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new URL(archivoLocalesURL).openStream()))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 // Para formato "NombreComuna,LocalNombre,CapacidadMax"
