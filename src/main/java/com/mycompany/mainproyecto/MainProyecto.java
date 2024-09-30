@@ -91,7 +91,7 @@ public class MainProyecto {
 
             switch(opcion){
                 case 1: // Agregar Votante
-                    try {
+                    try { //Se piden datos
                         System.out.println("Ingrese el RUN del votante: ");
                         int runAdd = lector.nextInt();
                         lector.nextLine();
@@ -100,14 +100,18 @@ public class MainProyecto {
                         System.out.println("Ingrese la Comuna del votante: ");
                         String comunaAdd = lector.nextLine();
 
+                        //Se crea un nuevo objeto Votante
                         Votante votante = new Votante(runAdd, nombreAdd, comunaAdd);
+                        //Se busca la comuna en la que debería ser agregado
                         Comuna comuna = mapaComunas.getComuna(comunaAdd);
                         if (comuna != null) {
                             System.out.println("Ingrese el nombre del Local de Sufragio:");
                             String nombreLocal = lector.nextLine();
-
+                            
+                            //Si existe el local
                             LocalDeSufragio local = comuna.buscarLocal(nombreLocal);
                             if (local != null) {
+                                //Si el local puede aceptar al nuevo votante, se agrega
                                 if (local.puedeAceptarVotante(votante)) {
                                     local.agregarVotante(votante);
                                     System.out.println("Votante agregado exitosamente!!");
@@ -129,17 +133,20 @@ public class MainProyecto {
                      
                 case 2: // Eliminar Votante
                     try {
+                        //Se piden datos
                         System.out.println("Ingrese el RUN del votante a eliminar: ");
                         int runEliminar = lector.nextInt();
                         lector.nextLine();
                         System.out.println("Ingrese la Comuna del votante a eliminar:");
                         String comunaEliminar = lector.nextLine();
-
+                        
+                        //Si existe la comuna
                         Comuna comunaEliminarObj = mapaComunas.getComuna(comunaEliminar);
                         if (comunaEliminarObj != null) {
                             System.out.println("Ingrese el nombre del local del votante a eliminar:");
                             String localEliminar = lector.nextLine();
-
+                            
+                            //Si existe el local buscado
                             LocalDeSufragio localEliminarObj = comunaEliminarObj.buscarLocal(localEliminar);
 
                             if (localEliminarObj != null) {
@@ -161,7 +168,8 @@ public class MainProyecto {
                     break;
                        
                 case 3: // Modificar Votante
-                    try {
+                    try { 
+                        //Se piden datos
                         System.out.println("Ingrese el RUN del votante que quiere modificar: ");
                         int runModificar = lector.nextInt();
                         lector.nextLine();
@@ -231,17 +239,22 @@ public class MainProyecto {
                     System.out.println("Ingrese el nombre de la comuna para mostrar sus votantes: ");
                     String comunaMostrar = lector.nextLine();
 
+                    //Si la comuna existe
                     Comuna comunaMostrarObj = mapaComunas.getComuna(comunaMostrar);
                     if (comunaMostrarObj != null) {
+                        //Se obtiene la lista de locales de sufragio
                         List<LocalDeSufragio> locales = comunaMostrarObj.getLocales();
                         if (locales.isEmpty()) {
                             System.out.println("No hay locales en la comuna " + comunaMostrar);
                         } else {
                             boolean encontrados = false;
+                            //Se recorre la lista de locales
                             for (LocalDeSufragio local : locales) {
+                                //Se obtiene la lista de votantes
                                 List<Votante> votantes = local.getVotantes();
                                 if (!votantes.isEmpty()) {
                                     System.out.println("Local de Sufragio: " + local.getNombre());
+                                    //Se imprime la información del votante
                                     for (Votante votante : votantes) {
                                         System.out.println("RUN: " + votante.getRun() + ", Nombre: " + votante.getNombre());
                                     }
