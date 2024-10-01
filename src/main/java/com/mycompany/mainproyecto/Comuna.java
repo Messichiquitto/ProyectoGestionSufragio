@@ -58,12 +58,12 @@ public class Comuna {
     }
     
     /**
-     * Devuelve la lista de locales de sufragio de la comuna.
+     * Devuelve una copia de la lista de locales de sufragio de la comuna.
      * 
      * @return Lista de locales de sufragio.
      */
     public List<LocalDeSufragio> getLocales(){
-        return locales;
+        return new ArrayList<>(locales);
     }
     
     public void addLocal(LocalDeSufragio local){

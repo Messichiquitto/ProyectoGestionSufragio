@@ -41,7 +41,7 @@ public class LocalDeSufragio {
     }
     
     public List<Votante> getVotantes() {
-        return votantes;
+        return new ArrayList<>(votantes);
     }
     
     // Método para verificar si un votante ya está registrado en el local usando un objeto Votante

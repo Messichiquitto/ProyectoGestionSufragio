@@ -3,6 +3,9 @@ package com.mycompany.mainproyecto;
 import java.util.*;
 
 public class MainProyecto {
+    //Se definen las variables de archivos a nivel de clase
+    private static final String archivoLocales = "src/main/java/archivos/arLocales.csv";
+    private static final String archivoVotantes = "src/main/java/archivos/arVotantes.csv";
 
     public static void main(String[] args) {
         //Crear mapa que guarda las comunas
@@ -95,34 +98,51 @@ public class MainProyecto {
                         System.out.println("Ingrese el RUN del votante: ");
                         int runAdd = lector.nextInt();
                         lector.nextLine();
-                        System.out.println("Ingrese el Nombre del votante: ");
-                        String nombreAdd = lector.nextLine();
-                        System.out.println("Ingrese la Comuna del votante: ");
-                        String comunaAdd = lector.nextLine();
+                        
+                        // Verificar si el votante ya está registrado en algún local
+                        boolean registrado = false;
+                        for (Comuna comuna : mapaComunas.getMapaComunas().values()) {
+                            for (LocalDeSufragio local : comuna.getLocales()) {
+                                if(local.votanteYaRegistrado(runAdd)){
+                                    System.out.println("El votante con RUN " + runAdd + " ya esta registrado en el local " + local.getNombre() + " de la comuna " + comuna.getNombre());
+                                    registrado = true;
+                                    break;
+                                }
+                            }
+                            if (registrado) break;
+                        }
+                        
+                        //Si no está registrado, continuar con la creación del votante
+                        if(!registrado){
+                            System.out.println("Ingrese el Nombre del votante: ");
+                            String nombreAdd = lector.nextLine();
+                            System.out.println("Ingrese la Comuna del votante: ");
+                            String comunaAdd = lector.nextLine();
 
-                        //Se crea un nuevo objeto Votante
-                        Votante votante = new Votante(runAdd, nombreAdd, comunaAdd);
-                        //Se busca la comuna en la que debería ser agregado
-                        Comuna comuna = mapaComunas.getComuna(comunaAdd);
-                        if (comuna != null) {
-                            System.out.println("Ingrese el nombre del Local de Sufragio:");
-                            String nombreLocal = lector.nextLine();
-                            
-                            //Si existe el local
-                            LocalDeSufragio local = comuna.buscarLocal(nombreLocal);
-                            if (local != null) {
-                                //Si el local puede aceptar al nuevo votante, se agrega
-                                if (local.puedeAceptarVotante(votante)) {
-                                    local.agregarVotante(votante);
-                                    System.out.println("Votante agregado exitosamente!!");
+                            //Se crea un nuevo objeto Votante
+                            Votante votante = new Votante(runAdd, nombreAdd, comunaAdd);
+                            //Se busca la comuna en la que debería ser agregado
+                            Comuna comuna = mapaComunas.getComuna(comunaAdd);
+                            if (comuna != null) {
+                                System.out.println("Ingrese el nombre del Local de Sufragio:");
+                                String nombreLocal = lector.nextLine();
+
+                                //Si existe el local
+                                LocalDeSufragio local = comuna.buscarLocal(nombreLocal);
+                                if (local != null) {
+                                    //Si el local puede aceptar al nuevo votante, se agrega
+                                    if (local.puedeAceptarVotante(votante)) {
+                                        local.agregarVotante(votante);
+                                        System.out.println("Votante agregado exitosamente!!");
+                                    } else {
+                                        System.out.println("No se puede agregar al votante. Verifique la capacidad o si el votante ya está registrado.");
+                                    }
                                 } else {
-                                    System.out.println("No se puede agregar al votante. Verifique la capacidad o si el votante ya está registrado.");
+                                    System.out.println("Local no encontrado en la comuna solicitada.");
                                 }
                             } else {
-                                System.out.println("Local no encontrado en la comuna solicitada.");
+                                System.out.println("Comuna no encontrada.");
                             }
-                        } else {
-                            System.out.println("Comuna no encontrada.");
                         }
                     } catch (InputMismatchException e) {
                         System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
@@ -294,14 +314,14 @@ public class MainProyecto {
                     break;
                 
                 case 6:
-                    String archivoLocales = "src/main/java/archivos/arLocales.txt";
                     mapaComunas.agregarLocalesDesdeArchivo(archivoLocales);
-                    
-                    String archivoVotantes = "src/main/java/archivos/arVotantes.txt";
                     mapaComunas.asignarVotantesDesdeArchivo(archivoVotantes);
                     break;
                     
                 case 7:
+                    System.out.println("Guardando datos antes de salir...");
+                    //Se llama al método para reescribir los archivos antes de salir
+                    GestionArchivo.guardarDatos(archivoLocales, archivoVotantes, mapaComunas);
                     System.out.println("Saliendo de la gestion!!");
                     lector.close();
                     return;

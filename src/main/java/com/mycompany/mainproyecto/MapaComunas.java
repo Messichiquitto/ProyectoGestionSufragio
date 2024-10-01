@@ -23,7 +23,7 @@ public class MapaComunas {
     }
     
     public Map<String, Comuna> getMapaComunas(){
-        return mapaComunas;
+        return new HashMap<>(mapaComunas);
     }
     
     public void addComuna(Comuna comuna){

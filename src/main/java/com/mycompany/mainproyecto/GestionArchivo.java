@@ -3,6 +3,8 @@ package com.mycompany.mainproyecto;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class GestionArchivo {
 
@@ -49,6 +51,30 @@ public class GestionArchivo {
                 System.out.println("Local " + nombreLocal + " agregado a la comuna " + nombreComuna);
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public static void guardarDatos(String archivoLocales, String archivoVotantes, MapaComunas mapaComunas){
+        try (BufferedWriter bwLocales = new BufferedWriter(new FileWriter(archivoLocales));
+         BufferedWriter bwVotantes = new BufferedWriter(new FileWriter(archivoVotantes))) {
+            //Recorrer todas las comuna
+            for(Comuna comuna : mapaComunas.getMapaComunas().values()){
+                //Recorrer todos los locales
+                for(LocalDeSufragio local : comuna.getLocales()){
+                    //Guardar la información del local
+                    bwLocales.write(comuna.getNombre() + "," + local.getNombre() + "," + local.getCapacidadMax());
+                    bwLocales.newLine(); // Añadir salto de línea
+                    
+                    //Guardar la información del votante
+                    for(Votante votante : local.getVotantes()){
+                        //Escribir en el archivo el formato "run,nombre,comuna"
+                        bwVotantes.write(votante.getRun() + "," + votante.getNombre() + "," + votante.getComuna());
+                        bwVotantes.newLine(); // Agregar salto de línea
+                    }
+                }
+            }
+        } catch(IOException e){
             e.printStackTrace();
         }
     }
