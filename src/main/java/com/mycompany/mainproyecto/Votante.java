@@ -1,31 +1,12 @@
 package com.mycompany.mainproyecto;
 
 //Listo
-public class Votante {
-    private int run;
-    private String nombre;
+public class Votante extends Persona{
     private String comuna;
     
     public Votante(int run, String nombre, String comuna){
-        this.run = run;
-        this.nombre = nombre;
+        super(run, nombre);
         this.comuna = comuna;
-    }
-    
-    public void setRun(int run){
-        this.run = run;
-    }
-    
-    public int getRun(){
-        return run;
-    }
-    
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-    }
-    
-    public String getNombre(){
-        return nombre;
     }
     
     public void setComuna(String comuna){
@@ -34,5 +15,11 @@ public class Votante {
     
     public String getComuna(){
         return comuna;
+    }
+    
+    // Se utiliza sobreescritura del metodo realizarAccion, se usa el getNombre para mantener los atributos privados
+    @Override
+    public void realizarAccion(){
+        System.out.println(getNombre() + " está votando en la comuna "+ comuna);
     }
 }
