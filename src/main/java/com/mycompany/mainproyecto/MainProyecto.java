@@ -11,59 +11,11 @@ public class MainProyecto {
         //Crear mapa que guarda las comunas
         MapaComunas mapaComunas = new MapaComunas();
         
-        //Datos iniciales de Votantes
-        Votante votante1 = new Votante(101231983, "Ariel Carrasco", "Belloto");
-        Votante votante2 = new Votante(398072314, "Benjamin Peredo", "Forestal");
-        Votante votante3 = new Votante(398072777, "Uriol Churrasco", "Belloto");
+        //Cargar datos desde archivos
+        GestionArchivo.agregarLocalesDesdeArchivo(archivoLocales, mapaComunas);
+        GestionArchivo.asignarVotantesDesdeArchivo(archivoVotantes, mapaComunas);
         
-        //Datos iniciales de Comunas
-        Comuna comuna1 = new Comuna("Belloto");
-        Comuna comuna2 = new Comuna("Forestal");
-        
-        //Datos iniciales Locales de Sufragia
-        LocalDeSufragio local1 = new LocalDeSufragio("Local Bakan", "Belloto", 15);
-        LocalDeSufragio local2 = new LocalDeSufragio("Local Perkin", "Forestal", 30);
-        LocalDeSufragio local3 = new LocalDeSufragio("Local Maso", "Belloto", 10);
-        
-        
-        //Agregar locales a su respectiva comuna
-        comuna1.addLocal(local1);
-        comuna2.addLocal(local2);
-        comuna1.addLocal(local3);
-        
-        //Agregar comunas al mapa
-        mapaComunas.addComuna(comuna1);
-        mapaComunas.addComuna(comuna2);
-        
-        //Asignar votantes
-        local1.agregarVotante(votante1);
-        local2.agregarVotante(votante2);
-        local3.agregarVotante(votante3);
-        
-        //Mostrar votantes
-        System.out.println("Votantes en " + local1.getNombre() + ":");
-        for(Votante votante : local1.getVotantes()){
-            System.out.println("- " + votante.getNombre());
-        }
-        
-        System.out.println("\nVotantes en " + local2.getNombre() + ":");
-        for (Votante votante : local2.getVotantes()) {
-            System.out.println("- " + votante.getNombre());
-        }
-        
-        System.out.println("\nVotantes en " + local3.getNombre() + ":");
-        for (Votante votante : local3.getVotantes()) {
-            System.out.println("- " + votante.getNombre());
-        }
-        
-        //Buscar y mostrar comuna
-        String clave = "Belloto";
-        Comuna comunaBuscada = mapaComunas.getComuna(clave);
-        if (comunaBuscada != null){
-            System.out.println("\nComuna encontrada: " + comunaBuscada.getNombre());
-        } else{
-            System.out.println("\nNo se encontró la comuna: " + clave);
-        }
+       
         
         //Llamar menú principal
         gestionDeVotantes(mapaComunas);
@@ -78,8 +30,7 @@ public class MainProyecto {
             System.out.println("3.- Modificar Votante");
             System.out.println("4.- Mostrar Votantes de una Comuna");
             System.out.println("5.- Mostrar Todos los Votantes");
-            System.out.println("6.- Cargar datos desde Archivos");
-            System.out.println("7.- Salir");
+            System.out.println("6.- Salir");
             System.out.println("Ingrese la opcion que desea usar: ");
             
             int opcion = 0;
@@ -98,7 +49,7 @@ public class MainProyecto {
                         System.out.println("Ingrese el RUN del votante: ");
                         int runAdd = lector.nextInt();
                         lector.nextLine();
-                        
+                                                
                         // Verificar si el votante ya está registrado en algún local
                         boolean registrado = false;
                         for (Comuna comuna : mapaComunas.getMapaComunas().values()) {
@@ -118,6 +69,8 @@ public class MainProyecto {
                             String nombreAdd = lector.nextLine();
                             System.out.println("Ingrese la Comuna del votante: ");
                             String comunaAdd = lector.nextLine();
+                            Persona p = new Persona(runAdd, nombreAdd);
+                            Votante v = new Votante(runAdd, nombreAdd, comunaAdd);
 
                             //Se crea un nuevo objeto Votante
                             Votante votante = new Votante(runAdd, nombreAdd, comunaAdd);
@@ -133,7 +86,9 @@ public class MainProyecto {
                                     //Si el local puede aceptar al nuevo votante, se agrega
                                     if (local.puedeAceptarVotante(votante)) {
                                         local.agregarVotante(votante);
-                                        System.out.println("Votante agregado exitosamente!!");
+                                        p.realizarAccion();
+                                        v.realizarAccion();
+                                        //System.out.println("Votante agregado exitosamente!!");
                                     } else {
                                         System.out.println("No se puede agregar al votante. Verifique la capacidad o si el votante ya está registrado.");
                                     }
@@ -314,17 +269,13 @@ public class MainProyecto {
                     break;
                 
                 case 6:
-                    mapaComunas.agregarLocalesDesdeArchivo(archivoLocales);
-                    mapaComunas.asignarVotantesDesdeArchivo(archivoVotantes);
-                    break;
-                    
-                case 7:
                     System.out.println("Guardando datos antes de salir...");
                     //Se llama al método para reescribir los archivos antes de salir
                     GestionArchivo.guardarDatos(archivoLocales, archivoVotantes, mapaComunas);
                     System.out.println("Saliendo de la gestion!!");
                     lector.close();
                     return;
+
                 default:
                     System.out.println("Opcion no valida, intentelo de nuevo.");
             }
