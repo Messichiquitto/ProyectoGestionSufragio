@@ -6,6 +6,7 @@ public class MainProyecto {
     //Se definen las variables de archivos a nivel de clase
     private static final String archivoLocales = "src/main/java/archivos/arLocales.csv";
     private static final String archivoVotantes = "src/main/java/archivos/arVotantes.csv";
+    private static final String archivoReporte = "src/main/java/archivos/Reporte.txt";
 
     public static void main(String[] args) {
         //Crear mapa que guarda las comunas
@@ -285,9 +286,10 @@ public class MainProyecto {
                     break;
                 
                 case 6:
-                    System.out.println("Guardando datos antes de salir...");
+                    System.out.println("Guardando datos y generando reporte antes de salir...");
                     //Se llama al método para reescribir los archivos antes de salir
                     GestionArchivo.guardarDatos(archivoLocales, archivoVotantes, mapaComunas);
+                    GestionArchivo.generarReporteVotantesPorLocal(mapaComunas, archivoReporte);
                     System.out.println("Saliendo de la gestion!!");
                     lector.close();
                     return;

@@ -78,4 +78,45 @@ public class GestionArchivo {
             e.printStackTrace();
         }
     }
+    
+    public static void generarReporteVotantesPorLocal(MapaComunas mapaComunas, String archivoReporte) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoReporte))) {
+            // Escribir el encabezado
+        writer.write("*******************************************\n");
+        writer.write("            REPORTE DE VOTANTES POR LOCAL            \n");
+        writer.write("*******************************************\n");
+        writer.write("Fecha: " + java.time.LocalDate.now() + "\n\n");
+
+        // Recorrer cada comuna
+        for (Comuna comuna : mapaComunas.getMapaComunas().values()) {
+            writer.write("=========================================================\n");
+            writer.write("              Comuna: " + comuna.getNombre() + "\n");
+            writer.write("=========================================================\n\n");
+
+            // Recorrer cada local de sufragio en la comuna
+            for (LocalDeSufragio local : comuna.getLocales()) {
+                writer.write("---------------------------------------------------------\n");
+                writer.write("    Local de Sufragio: " + local.getNombre() + "\n");
+                writer.write("---------------------------------------------------------\n");
+
+                // Recorrer cada votante en el local
+                for (Votante votante : local.getVotantes()) {
+                    writer.write("        RUN: " + votante.getRun() + ", Nombre: " + votante.getNombre() + "\n");
+                }
+
+                writer.write("\n"); // Espacio entre locales
+            }
+
+            writer.write("\n\n"); // Espacio entre comunas
+        }
+
+        writer.write("*******************************************\n");
+        writer.write("                Fin del reporte                \n");
+        writer.write("*******************************************\n");
+        System.out.println("Reporte generado exitosamente en: " + archivoReporte);
+
+    } catch (IOException e) {
+        System.out.println("Error al generar el reporte: " + e.getMessage());
+        }
+    }
 }

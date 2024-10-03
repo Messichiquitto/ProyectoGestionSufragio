@@ -1,0 +1,195 @@
+*******************************************
+            REPORTE DE VOTANTES POR LOCAL            
+*******************************************
+Fecha: 2024-10-03
+
+=========================================================
+              Comuna: Vina del Mar
+=========================================================
+
+---------------------------------------------------------
+    Local de Sufragio: Local K
+---------------------------------------------------------
+        RUN: 123456789, Nombre: Ana Morales
+        RUN: 126789012, Nombre: Jose Martinez
+        RUN: 130123456, Nombre: Manuel Soto
+        RUN: 134567890, Nombre: Raul Ramirez
+        RUN: 138901234, Nombre: Gerardo Fernandez
+
+---------------------------------------------------------
+    Local de Sufragio: Local L
+---------------------------------------------------------
+        RUN: 143456789, Nombre: Carla Romero
+        RUN: 146789012, Nombre: Tomas Perez
+        RUN: 149012345, Nombre: Lucia Lopez
+        RUN: 152345678, Nombre: Javier Diaz
+        RUN: 155678901, Nombre: Leonardo Salazar
+
+---------------------------------------------------------
+    Local de Sufragio: Local M
+---------------------------------------------------------
+        RUN: 158901234, Nombre: Patricia Sanchez
+        RUN: 162345678, Nombre: Natalia Gonzalez
+        RUN: 165678901, Nombre: Marcelo Diaz
+        RUN: 168901234, Nombre: Laura Gonzalez
+        RUN: 172345678, Nombre: Maria Jose Lopez
+
+---------------------------------------------------------
+    Local de Sufragio: Local N
+---------------------------------------------------------
+        RUN: 175678901, Nombre: Ricardo Perez
+        RUN: 178901234, Nombre: Christian Soto
+        RUN: 181234567, Nombre: Valentina Diaz
+        RUN: 185678901, Nombre: Felipe Silva
+        RUN: 188901234, Nombre: Matias Rivas
+
+---------------------------------------------------------
+    Local de Sufragio: Local O
+---------------------------------------------------------
+        RUN: 192345678, Nombre: Gonzalo Soto
+        RUN: 195678901, Nombre: Estela Munoz
+        RUN: 198901234, Nombre: Raul Bravo
+        RUN: 216596595, Nombre: Benjamin Peredo
+
+
+
+=========================================================
+              Comuna: Valparaiso
+=========================================================
+
+---------------------------------------------------------
+    Local de Sufragio: Local F
+---------------------------------------------------------
+        RUN: 122345678, Nombre: Pedro Silva
+        RUN: 125678901, Nombre: Luz Herrera
+        RUN: 131234567, Nombre: Patricia Salazar
+        RUN: 135678901, Nombre: Isabel Campos
+        RUN: 139012345, Nombre: Veronica Munoz
+
+---------------------------------------------------------
+    Local de Sufragio: Local G
+---------------------------------------------------------
+        RUN: 142345678, Nombre: Jorge Perez
+        RUN: 148901234, Nombre: Roberto Herrera
+        RUN: 151234567, Nombre: Silvia Munoz
+        RUN: 161234567, Nombre: Esteban Soto
+        RUN: 171234567, Nombre: Fernando Ramirez
+
+---------------------------------------------------------
+    Local de Sufragio: Local H
+---------------------------------------------------------
+        RUN: 182345678, Nombre: Nicolas Romero
+        RUN: 191234567, Nombre: Renata Bravo
+
+---------------------------------------------------------
+    Local de Sufragio: Local I
+---------------------------------------------------------
+
+---------------------------------------------------------
+    Local de Sufragio: Local J
+---------------------------------------------------------
+
+
+
+=========================================================
+              Comuna: Quilpue
+=========================================================
+
+---------------------------------------------------------
+    Local de Sufragio: Local P
+---------------------------------------------------------
+        RUN: 124567890, Nombre: Carlos Fernandez
+        RUN: 127890123, Nombre: Elena Rivas
+        RUN: 132345678, Nombre: Roberto Bravo
+        RUN: 136789012, Nombre: Francisco Pinto
+        RUN: 140123456, Nombre: Daniel Soto
+
+---------------------------------------------------------
+    Local de Sufragio: Local Q
+---------------------------------------------------------
+        RUN: 144567890, Nombre: Andres Lopez
+        RUN: 147890123, Nombre: Sofia Gonzalez
+        RUN: 153456789, Nombre: Carmen Rivas
+        RUN: 156789012, Nombre: Carolina Bravo
+        RUN: 159012345, Nombre: Guillermo Fernandez
+
+---------------------------------------------------------
+    Local de Sufragio: Local R
+---------------------------------------------------------
+        RUN: 163456789, Nombre: Antonio Perez
+        RUN: 166789012, Nombre: Paola Silva
+        RUN: 169012345, Nombre: Pedro Munoz
+        RUN: 173456789, Nombre: Jorge Gonzalez
+        RUN: 176789012, Nombre: Alejandro Campos
+
+---------------------------------------------------------
+    Local de Sufragio: Local S
+---------------------------------------------------------
+        RUN: 179012345, Nombre: Camila Rivas
+        RUN: 183456789, Nombre: Francisca Salazar
+        RUN: 186789012, Nombre: Ignacio Lopez
+        RUN: 189012345, Nombre: Constanza Perez
+        RUN: 193456789, Nombre: Angela Martinez
+
+---------------------------------------------------------
+    Local de Sufragio: Local T
+---------------------------------------------------------
+        RUN: 196789012, Nombre: Oscar Silva
+        RUN: 199012345, Nombre: Santiago Salazar
+
+
+
+=========================================================
+              Comuna: Belloto
+=========================================================
+
+---------------------------------------------------------
+    Local de Sufragio: Local A
+---------------------------------------------------------
+        RUN: 120000001, Nombre: Juan Perez
+        RUN: 121234567, Nombre: Maria Gonzalez
+        RUN: 128901234, Nombre: David Romero
+        RUN: 129012345, Nombre: Claudia Vega
+        RUN: 133456789, Nombre: Laura Diaz
+
+---------------------------------------------------------
+    Local de Sufragio: Local B
+---------------------------------------------------------
+        RUN: 137890123, Nombre: Marcela Gonzalez
+        RUN: 141234567, Nombre: Beatriz Silva
+        RUN: 145678901, Nombre: Vanessa Martinez
+        RUN: 150123456, Nombre: Diego Silva
+        RUN: 154567890, Nombre: Raquel Campos
+
+---------------------------------------------------------
+    Local de Sufragio: Local Perkin
+---------------------------------------------------------
+        RUN: 157890123, Nombre: Mauricio Romero
+        RUN: 160123456, Nombre: Teresa Lopez
+        RUN: 164567890, Nombre: Claudia Martinez
+        RUN: 167890123, Nombre: Rodrigo Herrera
+        RUN: 170123456, Nombre: Claudia Bravo
+
+---------------------------------------------------------
+    Local de Sufragio: Local Bakan
+---------------------------------------------------------
+        RUN: 174567890, Nombre: Isabel Silva
+        RUN: 177890123, Nombre: Martina Salazar
+        RUN: 180123456, Nombre: Roberto Ramirez
+        RUN: 184567890, Nombre: Daniela Gonzalez
+        RUN: 187890123, Nombre: Antonia Campos
+
+---------------------------------------------------------
+    Local de Sufragio: Local Maso
+---------------------------------------------------------
+        RUN: 190123456, Nombre: Tomas Herrera
+        RUN: 194567890, Nombre: Martin Ramirez
+        RUN: 197890123, Nombre: Emilia Gonzalez
+        RUN: 200123456, Nombre: Solange Diaz
+        RUN: 101231983, Nombre: Ariel Carrasco
+
+
+
+*******************************************
+                Fin del reporte                
+*******************************************
