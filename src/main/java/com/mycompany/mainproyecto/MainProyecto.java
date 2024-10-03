@@ -49,7 +49,12 @@ public class MainProyecto {
                         System.out.println("Ingrese el RUN del votante: ");
                         int runAdd = lector.nextInt();
                         lector.nextLine();
-                                                
+                                              
+                        //Validar el RUN
+                        if (String.valueOf(runAdd).length() != 9){
+                            throw new VotanteExceptions(VotanteExceptions.getMensajeRutInvalido());
+                        }
+                        
                         // Verificar si el votante ya está registrado en algún local
                         boolean registrado = false;
                         for (Comuna comuna : mapaComunas.getMapaComunas().values()) {
@@ -69,39 +74,42 @@ public class MainProyecto {
                             String nombreAdd = lector.nextLine();
                             System.out.println("Ingrese la Comuna del votante: ");
                             String comunaAdd = lector.nextLine();
+                            
+                            //Crear objeto persona
                             Persona p = new Persona(runAdd, nombreAdd);
-                            Votante v = new Votante(runAdd, nombreAdd, comunaAdd);
-
-                            //Se crea un nuevo objeto Votante
+                            //Crear objeto votante
                             Votante votante = new Votante(runAdd, nombreAdd, comunaAdd);
-                            //Se busca la comuna en la que debería ser agregado
-                            Comuna comuna = mapaComunas.getComuna(comunaAdd);
-                            if (comuna != null) {
-                                System.out.println("Ingrese el nombre del Local de Sufragio:");
-                                String nombreLocal = lector.nextLine();
 
-                                //Si existe el local
-                                LocalDeSufragio local = comuna.buscarLocal(nombreLocal);
-                                if (local != null) {
-                                    //Si el local puede aceptar al nuevo votante, se agrega
-                                    if (local.puedeAceptarVotante(votante)) {
-                                        local.agregarVotante(votante);
-                                        p.realizarAccion();
-                                        v.realizarAccion();
-                                        //System.out.println("Votante agregado exitosamente!!");
-                                    } else {
-                                        System.out.println("No se puede agregar al votante. Verifique la capacidad o si el votante ya está registrado.");
-                                    }
-                                } else {
-                                    System.out.println("Local no encontrado en la comuna solicitada.");
-                                }
+                            //Se busca la comuna en la que debería ser agregado      
+                            Comuna comuna = mapaComunas.getComuna(comunaAdd);
+                            if (comuna == null) {
+                                throw new VotanteExceptions(VotanteExceptions.getMensajeComunaNoEncontrada());
+                            }
+                            
+                            System.out.println("Ingrese el nombre del Local de Sufragio:");
+                            String nombreLocal = lector.nextLine();
+
+                            //Si existe el local
+                            LocalDeSufragio local = comuna.buscarLocal(nombreLocal);
+                            if (local == null) {
+                                throw new VotanteExceptions(VotanteExceptions.getMensajeErrorLocalNoEncontrado());
+                            }
+
+                            //Si el local puede aceptar al nuevo votante, se agrega
+                            if (local.puedeAceptarVotante(votante)) {
+                                local.agregarVotante(votante);
+                                p.realizarAccion();
+                                votante.realizarAccion();
+                                System.out.println("Votante agregado exitosamente!!");
                             } else {
-                                System.out.println("Comuna no encontrada.");
+                                System.out.println("No se puede agregar al votante. Verifique la capacidad o si el votante ya está registrado.");
                             }
                         }
                     } catch (InputMismatchException e) {
                         System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
                         lector.nextLine(); // Limpiar el buffer
+                    } catch (VotanteExceptions e) {
+                        System.out.println(e.getMessage()); //Arroja el mensaje específico de la excepción
                     }
                     break;
 
@@ -112,6 +120,12 @@ public class MainProyecto {
                         System.out.println("Ingrese el RUN del votante a eliminar: ");
                         int runEliminar = lector.nextInt();
                         lector.nextLine();
+                        
+                        //Validar el RUN
+                        if (String.valueOf(runEliminar).length() != 9) {
+                            throw new VotanteExceptions(VotanteExceptions.getMensajeRutInvalido());
+                        }
+                        
                         System.out.println("Ingrese la Comuna del votante a eliminar:");
                         String comunaEliminar = lector.nextLine();
                         
@@ -139,6 +153,8 @@ public class MainProyecto {
                     } catch (InputMismatchException e) {
                         System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
                         lector.nextLine(); // Limpiar el buffer
+                    } catch (VotanteExceptions e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                        
