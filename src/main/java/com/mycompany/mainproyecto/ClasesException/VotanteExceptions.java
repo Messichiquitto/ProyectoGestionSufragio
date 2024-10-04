@@ -6,7 +6,7 @@ public class VotanteExceptions extends Exception {
     }
     
     public static String getMensajeRutInvalido() {
-        return "El RUN es inválido. Debe tener al menos 9 dígitos.";
+        return "El RUN es invalido. Debe tener al menos 9 digitos.";
     }
 }
     

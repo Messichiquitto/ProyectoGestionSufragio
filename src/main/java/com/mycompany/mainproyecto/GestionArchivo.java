@@ -16,7 +16,7 @@ public class GestionArchivo {
                 String[] datosVotante = linea.split(",");
                 int run = Integer.parseInt(datosVotante[0]);
                 String nombre = datosVotante[1];
-                String comuna = datosVotante[2];
+                String comuna = datosVotante[2].toLowerCase();
                 
                 Votante votante = new Votante(run, nombre, comuna);
                 mapaComunas.asignarVotante(votante);
@@ -32,8 +32,8 @@ public class GestionArchivo {
             while ((linea = br.readLine()) != null) {
                 // Para formato "NombreComuna,LocalNombre,CapacidadMax"
                 String[] datosLocal = linea.split(",");
-                String nombreComuna = datosLocal[0];
-                String nombreLocal = datosLocal[1];
+                String nombreComuna = datosLocal[0].toLowerCase();
+                String nombreLocal = datosLocal[1].toLowerCase();
                 int capacidadMax = Integer.parseInt(datosLocal[2].trim());
                 
                 LocalDeSufragio local = new LocalDeSufragio(nombreLocal, nombreComuna, capacidadMax);
@@ -48,7 +48,7 @@ public class GestionArchivo {
 
                 // Agregar el local a la comuna
                 comuna.addLocal(local);
-                System.out.println("Local " + nombreLocal + " agregado a la comuna " + nombreComuna);
+                System.out.println("Local " + capitalize(nombreLocal) + " agregado a la comuna " + capitalize(nombreComuna));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -63,13 +63,13 @@ public class GestionArchivo {
                 //Recorrer todos los locales
                 for(LocalDeSufragio local : comuna.getLocales()){
                     //Guardar la información del local
-                    bwLocales.write(comuna.getNombre() + "," + local.getNombre() + "," + local.getCapacidadMax());
+                    bwLocales.write(capitalize(comuna.getNombre()) + "," + capitalize(local.getNombre()) + "," + local.getCapacidadMax());
                     bwLocales.newLine(); // Añadir salto de línea
                     
                     //Guardar la información del votante
                     for(Votante votante : local.getVotantes()){
                         //Escribir en el archivo el formato "run,nombre,comuna"
-                        bwVotantes.write(votante.getRun() + "," + votante.getNombre() + "," + votante.getComuna());
+                        bwVotantes.write(votante.getRun() + "," + votante.getNombre() + "," + capitalize(votante.getComuna()));
                         bwVotantes.newLine(); // Agregar salto de línea
                     }
                 }
@@ -90,13 +90,13 @@ public class GestionArchivo {
         // Recorrer cada comuna
         for (Comuna comuna : mapaComunas.getMapaComunas().values()) {
             writer.write("=========================================================\n");
-            writer.write("              Comuna: " + comuna.getNombre() + "\n");
+            writer.write("              Comuna: " + capitalize(comuna.getNombre()) + "\n");
             writer.write("=========================================================\n\n");
 
             // Recorrer cada local de sufragio en la comuna
             for (LocalDeSufragio local : comuna.getLocales()) {
                 writer.write("---------------------------------------------------------\n");
-                writer.write("    Local de Sufragio: " + local.getNombre() + "\n");
+                writer.write("    Local de Sufragio: " + capitalize(local.getNombre()) + "\n");
                 writer.write("---------------------------------------------------------\n");
 
                 // Recorrer cada votante en el local
@@ -118,5 +118,13 @@ public class GestionArchivo {
     } catch (IOException e) {
         System.out.println("Error al generar el reporte: " + e.getMessage());
         }
+    }
+    
+    public static String capitalize(String str) {
+    if (str == null || str.isEmpty()) {
+        return str;
+    }
+    // Convierte la primera letra a mayúscula y el resto a minúscula
+    return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
 }

@@ -26,6 +26,6 @@ public class Persona {
     }
     
     public void realizarAccion(){
-        System.out.println(nombre + " fué registrado como votante de manera exitosa");
+        System.out.println(nombre + " fue registrado como votante de manera exitosa");
     }
 }

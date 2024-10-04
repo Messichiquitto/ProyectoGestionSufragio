@@ -48,7 +48,7 @@ public class MapaComunas {
             for(LocalDeSufragio local : comuna.getLocales()){
                 if(local.verificarCapacidad() && !local.votanteYaRegistrado(votante)){
                     local.agregarVotante(votante);
-                    System.out.println("Votante " + votante.getNombre() + " asignado al " + local.getNombre());
+                    System.out.println("Votante " + votante.getNombre() + " asignado al Local " + GestionArchivo.capitalize(local.getNombre()));
                     asignacion = true;
                     break;
                 }
@@ -57,7 +57,7 @@ public class MapaComunas {
                 System.out.println("No se puede agregar al votante " + votante.getNombre());
             }
         } else{
-            System.out.println("Comuna " + comunaVotante + " no encontrada en el mapa.");
+            System.out.println("Comuna " + GestionArchivo.capitalize(comunaVotante) + " no encontrada en el mapa.");
         }
     }
 }
