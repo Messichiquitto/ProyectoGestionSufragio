@@ -10,43 +10,42 @@ Fecha: 2024-10-03
 ---------------------------------------------------------
     Local de Sufragio: Local K
 ---------------------------------------------------------
-        RUN: 123456789, Nombre: Ana Morales
         RUN: 126789012, Nombre: Jose Martinez
         RUN: 130123456, Nombre: Manuel Soto
         RUN: 134567890, Nombre: Raul Ramirez
         RUN: 138901234, Nombre: Gerardo Fernandez
+        RUN: 143456789, Nombre: Carla Romero
 
 ---------------------------------------------------------
     Local de Sufragio: Local L
 ---------------------------------------------------------
-        RUN: 143456789, Nombre: Carla Romero
         RUN: 146789012, Nombre: Tomas Perez
         RUN: 149012345, Nombre: Lucia Lopez
         RUN: 152345678, Nombre: Javier Diaz
         RUN: 155678901, Nombre: Leonardo Salazar
+        RUN: 158901234, Nombre: Patricia Sanchez
 
 ---------------------------------------------------------
     Local de Sufragio: Local M
 ---------------------------------------------------------
-        RUN: 158901234, Nombre: Patricia Sanchez
         RUN: 162345678, Nombre: Natalia Gonzalez
         RUN: 165678901, Nombre: Marcelo Diaz
         RUN: 168901234, Nombre: Laura Gonzalez
         RUN: 172345678, Nombre: Maria Jose Lopez
+        RUN: 175678901, Nombre: Ricardo Perez
 
 ---------------------------------------------------------
     Local de Sufragio: Local N
 ---------------------------------------------------------
-        RUN: 175678901, Nombre: Ricardo Perez
         RUN: 178901234, Nombre: Christian Soto
         RUN: 181234567, Nombre: Valentina Diaz
         RUN: 185678901, Nombre: Felipe Silva
         RUN: 188901234, Nombre: Matias Rivas
+        RUN: 192345678, Nombre: Gonzalo Soto
 
 ---------------------------------------------------------
     Local de Sufragio: Local O
 ---------------------------------------------------------
-        RUN: 192345678, Nombre: Gonzalo Soto
         RUN: 195678901, Nombre: Estela Munoz
         RUN: 198901234, Nombre: Raul Bravo
         RUN: 216596595, Nombre: Benjamin Peredo

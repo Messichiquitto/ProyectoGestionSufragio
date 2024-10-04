@@ -84,7 +84,7 @@ public class MainProyecto {
                             //Se busca la comuna en la que debería ser agregado      
                             Comuna comuna = mapaComunas.getComuna(comunaAdd);
                             if (comuna == null) {
-                                throw new VotanteExceptions(VotanteExceptions.getMensajeComunaNoEncontrada());
+                                throw new ComunaExceptions(ComunaExceptions.getMensajeComunaNoEncontrada());
                             }
                             
                             System.out.println("Ingrese el nombre del Local de Sufragio:");
@@ -93,7 +93,7 @@ public class MainProyecto {
                             //Si existe el local
                             LocalDeSufragio local = comuna.buscarLocal(nombreLocal);
                             if (local == null) {
-                                throw new VotanteExceptions(VotanteExceptions.getMensajeErrorLocalNoEncontrado());
+                                throw new ComunaExceptions(ComunaExceptions.getMensajeErrorLocalNoEncontrado());
                             }
 
                             //Si el local puede aceptar al nuevo votante, se agrega
@@ -111,10 +111,11 @@ public class MainProyecto {
                         lector.nextLine(); // Limpiar el buffer
                     } catch (VotanteExceptions e) {
                         System.out.println(e.getMessage()); //Arroja el mensaje específico de la excepción
+                    } catch (ComunaExceptions e) {
+                        System.out.println(e.getMessage()); //Arroja el mensaje específico de la excepción de comuna
                     }
                     break;
-
-                     
+  
                 case 2: // Eliminar Votante
                     try {
                         //Se piden datos
@@ -132,108 +133,144 @@ public class MainProyecto {
                         
                         //Si existe la comuna
                         Comuna comunaEliminarObj = mapaComunas.getComuna(comunaEliminar);
-                        if (comunaEliminarObj != null) {
-                            System.out.println("Ingrese el nombre del local del votante a eliminar:");
-                            String localEliminar = lector.nextLine();
+                        if (comunaEliminarObj == null) {
+                            throw new ComunaExceptions(ComunaExceptions.getMensajeComunaNoEncontrada());
+                        }
+                        System.out.println("Ingrese el nombre del local del votante a eliminar:");
+                        String localEliminar = lector.nextLine();
                             
-                            //Si existe el local buscado
-                            LocalDeSufragio localEliminarObj = comunaEliminarObj.buscarLocal(localEliminar);
-
-                            if (localEliminarObj != null) {
-                                if (localEliminarObj.eliminarVotante(runEliminar)) {
-                                    System.out.println("Votante eliminado exitosamente!!");
-                                } else {
-                                    System.out.println("Votante no encontrado dentro del local especificado.");
-                                }
-                            } else {
-                                System.out.println("Local de sufragio no encontrado dentro de la comuna especificada.");
-                            }
+                        //Si existe el local buscado
+                        LocalDeSufragio localEliminarObj = comunaEliminarObj.buscarLocal(localEliminar);
+                        if (localEliminarObj == null) {
+                            throw new ComunaExceptions(ComunaExceptions.getMensajeErrorLocalNoEncontrado());
+                        }
+                        
+                        //Eliminar votante
+                        if (localEliminarObj.eliminarVotante(runEliminar)) {
+                            System.out.println("Votante eliminado exitosamente!!");
                         } else {
-                            System.out.println("Comuna no encontrada.");
+                            throw new VotanteExceptions("Votante no encontrado dentro del local");
                         }
                     } catch (InputMismatchException e) {
                         System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
                         lector.nextLine(); // Limpiar el buffer
                     } catch (VotanteExceptions e) {
                         System.out.println(e.getMessage());
+                    } catch (ComunaExceptions e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
-                       
+                    
                 case 3: // Modificar Votante
                     try { 
                         //Se piden datos
                         System.out.println("Ingrese el RUN del votante que quiere modificar: ");
                         int runModificar = lector.nextInt();
                         lector.nextLine();
+                        
+                        if (String.valueOf(runModificar).length() != 9) {
+                            throw new VotanteExceptions(VotanteExceptions.getMensajeRutInvalido());
+                        }
+                        
                         System.out.println("Ingrese la comuna del votante: ");
                         String comunaActual = lector.nextLine();
 
                         // Buscar la comuna en el mapa
                         Comuna comunaOrigen = mapaComunas.getComuna(comunaActual);
-                        if (comunaOrigen != null) {
-                            // Buscar al votante en la comuna y en sus locales
-                            Votante votanteEncontrado = null;
-                            LocalDeSufragio localOrigen = null;
-
-                            for (LocalDeSufragio local : comunaOrigen.getLocales()) {
-                                votanteEncontrado = local.buscarVotantePorRun(runModificar);
-                                if (votanteEncontrado != null) {
-                                    localOrigen = local;
-                                    break;
-                                }
-                            }
-
-                            if (votanteEncontrado != null) {
-                                // Solicitar los nuevos datos
-                                System.out.println("Ingrese el nuevo nombre del votante: ");
-                                String nombreNuevo = lector.nextLine();
-                                System.out.println("Ingrese la nueva comuna: ");
-                                String comunaNueva = lector.nextLine();
-                                System.out.println("Ingrese el nuevo local de sufragio del votante:");
-                                String localNuevo = lector.nextLine();
-
-                                // Actualizar nombre y comuna del votante
-                                votanteEncontrado.setNombre(nombreNuevo);
-                                votanteEncontrado.setComuna(comunaNueva);
-
-                                // Eliminar del local actual
-                                localOrigen.eliminarVotante(runModificar);
-
-                                // Asignar al nuevo local
-                                Comuna comunaDestino = mapaComunas.getComuna(comunaNueva);
-                                if (comunaDestino != null) {
-                                    LocalDeSufragio localDestino = comunaDestino.buscarLocal(localNuevo);
-                                    if (localDestino != null) {
-                                        if (localDestino.puedeAceptarVotante(votanteEncontrado)) {
-                                            localDestino.agregarVotante(votanteEncontrado);
-                                            System.out.println("Votante movido al nuevo local de sufragio en " + comunaNueva + ".");
-                                        } else {
-                                            System.out.println("No se puede agregar al votante al nuevo local.");
-                                        }
-                                    } else {
-                                        System.out.println("No se pudo encontrar el nuevo local de sufragio.");
-                                    }
-                                } else {
-                                    System.out.println("No se pudo encontrar la comuna especificada.");
-                                }
-                            } else {
-                                System.out.println("Votante no encontrado con el RUN especificado en la comuna.");
-                            }
-                        } else {
-                            System.out.println("No se pudo encontrar la comuna especificada.");
+                        if (comunaOrigen == null) {
+                            throw new ComunaExceptions(ComunaExceptions.getMensajeComunaNoEncontrada());
                         }
+                        
+                        // Buscar al votante en la comuna y en sus locales
+                        Votante votanteEncontrado = null;
+                        LocalDeSufragio localOrigen = null;
+
+                        for (LocalDeSufragio local : comunaOrigen.getLocales()) {
+                            votanteEncontrado = local.buscarVotantePorRun(runModificar);
+                            if (votanteEncontrado != null) {
+                                localOrigen = local;
+                                break;
+                            }
+                        }
+
+                        if (votanteEncontrado == null) {
+                            throw new VotanteExceptions("Votante no encontrado con el RUN especificado en la comuna");
+                        }
+                        
+                        // Solicitar los nuevos datos
+                        System.out.println("Ingrese el nuevo nombre del votante: ");
+                        String nombreNuevo = lector.nextLine();
+                        System.out.println("Ingrese la nueva comuna: ");
+                        String comunaNueva = lector.nextLine();
+                        System.out.println("Ingrese el nuevo local de sufragio del votante:");
+                        String localNuevo = lector.nextLine();
+
+                        // Actualizar nombre y comuna del votante
+                        votanteEncontrado.setNombre(nombreNuevo);
+                        votanteEncontrado.setComuna(comunaNueva);
+
+                        // Eliminar del local actual
+                        localOrigen.eliminarVotante(runModificar);
+
+                        // Asignar al nuevo local
+                        Comuna comunaDestino = mapaComunas.getComuna(comunaNueva);
+                        if (comunaDestino == null) {
+                            throw new ComunaExceptions("No se pudo encontrar la nueva comuna especificada");
+                        }
+                        
+                        LocalDeSufragio localDestino = comunaDestino.buscarLocal(localNuevo);
+                        if (localDestino == null) {
+                            throw new ComunaExceptions("No se pudo agregar al votante al nuevo local, capacidad excedida");
+                        }
+
+                        localDestino.agregarVotante(votanteEncontrado);
+                        System.out.println("Votante movido al nuevo local de sufragio en " + comunaNueva + ".");
+                        
                     } catch (InputMismatchException e) {
-                        System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
-                        lector.nextLine(); // Limpiar el buffer
+                        System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN");
+                        lector.nextLine();
+                    } catch (VotanteExceptions e) {
+                        System.out.println(e.getMessage());
+                    } catch (ComunaExceptions e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
-                case 4: // Mostrar Votantes de una Comuna
-                    System.out.println("Ingrese el nombre de la comuna para mostrar sus votantes: ");
-                    String comunaMostrar = lector.nextLine();
 
-                    //Si la comuna existe
-                    Comuna comunaMostrarObj = mapaComunas.getComuna(comunaMostrar);
-                    if (comunaMostrarObj != null) {
+                  /*if (localDestino.puedeAceptarVotante(votanteEncontrado)) {
+                        localDestino.agregarVotante(votanteEncontrado);
+                        System.out.println("Votante movido al nuevo local de sufragio en " + comunaNueva + ".");
+                    } else {
+                        System.out.println("No se puede agregar al votante al nuevo local.");
+                    }
+                } else {
+                    System.out.println("No se pudo encontrar el nuevo local de sufragio.");
+                }
+            } else {
+                System.out.println("No se pudo encontrar la comuna especificada.");
+            }
+        } else {
+            System.out.println("Votante no encontrado con el RUN especificado en la comuna.");
+        }
+    } else {
+        System.out.println("No se pudo encontrar la comuna especificada.");
+    }
+} catch (InputMismatchException e) {
+    System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
+    lector.nextLine(); // Limpiar el buffer
+}
+break;*/
+                    
+                case 4: // Mostrar Votantes de una Comuna
+                    try {
+                        System.out.println("Ingrese el nombre de la comuna para mostrar sus votantes: ");
+                        String comunaMostrar = lector.nextLine();
+
+                        //Si la comuna existe
+                        Comuna comunaMostrarObj = mapaComunas.getComuna(comunaMostrar);
+                        if (comunaMostrarObj == null) {
+                            throw new ComunaExceptions(ComunaExceptions.getMensajeComunaNoEncontrada());
+                        }
+                    
                         //Se obtiene la lista de locales de sufragio
                         List<LocalDeSufragio> locales = comunaMostrarObj.getLocales();
                         if (locales.isEmpty()) {
@@ -257,31 +294,46 @@ public class MainProyecto {
                                 System.out.println("No se encontraron votantes en la comuna " + comunaMostrar);
                             }
                         }
-                    } else {
-                        System.out.println("Comuna no encontrada.");
+                    } catch (ComunaExceptions e) {
+                        System.out.println(e.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Ocurrió un error inesperado: " + e.getMessage());
                     }
                     break;
+                    
+             
                 
                 case 5: // Mostrar Todos los Votantes
-                    System.out.println("Mostrando todos los votantes en el mapa de comunas:");
+                    try {
+                        System.out.println("Mostrando todos los votantes en el mapa de comunas:");
+                        
+                        //Verificar si el mapa de comunas está vacío
+                        if (mapaComunas.getMapaComunas().isEmpty()) {
+                            throw new ComunaExceptions("No hay comunas disponibles en el mapa.");
+                        }
+                        
+                        // Recorrer todas las comunas del objeto mapaComunas
+                        for (Comuna comuna : mapaComunas.getMapaComunas().values()) {
+                            System.out.println("\nComuna: " + comuna.getNombre());
 
-                    // Recorrer todas las comunas del objeto mapaComunas
-                    for (Comuna comuna : mapaComunas.getMapaComunas().values()) {
-                        System.out.println("\nComuna: " + comuna.getNombre());
-
-                        // Recorrer todos los locales de la comuna
-                        for (LocalDeSufragio local : comuna.getLocales()) {
-                            System.out.println("  Local: " + local.getNombre());
-                            List<Votante> votantes = local.getVotantes();
-                            if (votantes.isEmpty()) {
-                                System.out.println("    No hay votantes en este local.");
-                            } else {
-                                // Mostrar los votantes de cada local
-                                for (Votante votante : votantes) {
-                                    System.out.println("    Votante: " + votante.getNombre() + ", RUN: " + votante.getRun());
+                            // Recorrer todos los locales de la comuna
+                            for (LocalDeSufragio local : comuna.getLocales()) {
+                                System.out.println("  Local: " + local.getNombre());
+                                List<Votante> votantes = local.getVotantes();
+                                if (votantes.isEmpty()) {
+                                    System.out.println("    No hay votantes en este local.");
+                                } else {
+                                    // Mostrar los votantes de cada local
+                                    for (Votante votante : votantes) {
+                                        System.out.println("    Votante: " + votante.getNombre() + ", RUN: " + votante.getRun());
+                                    }
                                 }
                             }
                         }
+                    } catch (ComunaExceptions e) {
+                        System.out.println(e.getMessage());
+                    } catch (Exception e) {
+                        System.out.println("Ocurrió un error inesperado: " + e.getMessage());
                     }
                     break;
                 
