@@ -1,5 +1,5 @@
 package com.mycompany.mainproyecto;
-
+    
 import java.util.*;
 
 public class MainProyecto {
@@ -9,15 +9,26 @@ public class MainProyecto {
     private static final String archivoReporte = "src/main/java/archivos/Reporte.txt";
 
     public static void main(String[] args) {
+        MapaComunas mapaComunas = cargarDatosIniciales();
+        
+        VentanaMain ventanaPrincipal = new VentanaMain(mapaComunas);
+        ventanaPrincipal.setVisible(true);
+    }
+    
+    private static MapaComunas cargarDatosIniciales() {
         //Crear mapa que guarda las comunas
         MapaComunas mapaComunas = new MapaComunas();
         
         //Cargar datos desde archivos
         GestionArchivo.agregarLocalesDesdeArchivo(archivoLocales, mapaComunas);
         GestionArchivo.asignarVotantesDesdeArchivo(archivoVotantes, mapaComunas);
-        
+        return mapaComunas;
+    }
+    
+    
+
        
-        
+        /*
         //Llamar menú principal
         gestionDeVotantes(mapaComunas);
     }
@@ -258,7 +269,7 @@ public class MainProyecto {
     System.out.println("Entrada no valida. Por favor, ingrese un numero para el RUN.");
     lector.nextLine(); // Limpiar el buffer
 }
-break;*/
+break;
                     
                 case 4: // Mostrar Votantes de una Comuna
                     try {
@@ -350,5 +361,5 @@ break;*/
                     System.out.println("Opcion no valida, intentelo de nuevo.");
             }
            }
-        }
+        }*/
 }

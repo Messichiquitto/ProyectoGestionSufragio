@@ -1,7 +1,7 @@
 *******************************************
             REPORTE DE VOTANTES POR LOCAL            
 *******************************************
-Fecha: 2024-10-03
+Fecha: 2024-10-04
 
 =========================================================
               Comuna: Vina del Mar
@@ -10,11 +10,11 @@ Fecha: 2024-10-03
 ---------------------------------------------------------
     Local de Sufragio: Local K
 ---------------------------------------------------------
-        RUN: 126789012, Nombre: Jose Martinez
         RUN: 130123456, Nombre: Manuel Soto
         RUN: 134567890, Nombre: Raul Ramirez
         RUN: 138901234, Nombre: Gerardo Fernandez
         RUN: 143456789, Nombre: Carla Romero
+        RUN: 126789012, Nombre: Pepe Martinez
 
 ---------------------------------------------------------
     Local de Sufragio: Local L
