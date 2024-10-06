@@ -39,6 +39,7 @@ public class VentanaMain extends JFrame {
         botonMostrarVotantesComuna = new javax.swing.JButton();
         botonMostrarTodosLosVotantes = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,36 +85,45 @@ public class VentanaMain extends JFrame {
             }
         });
 
+        jLabel1.setText("Sistema de Gestión de Votantes");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(37, 37, 37)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(botonModificarVotante)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(botonEliminarVotante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(botonAgregarVotantes, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(botonMostrarVotantesComuna, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(botonMostrarTodosLosVotantes)
-                        .addGap(17, 17, 17)))
-                .addGap(87, 87, 87))
             .addGroup(layout.createSequentialGroup()
                 .addGap(164, 164, 164)
                 .addComponent(botonSalir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(37, 37, 37)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(botonModificarVotante)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(botonAgregarVotantes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(botonEliminarVotante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(botonMostrarVotantesComuna, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(botonMostrarTodosLosVotantes)
+                                .addGap(17, 17, 17)))
+                        .addGap(87, 87, 87))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(115, 115, 115))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(64, 64, 64)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
                 .addComponent(botonAgregarVotantes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonEliminarVotante)
@@ -133,19 +143,59 @@ public class VentanaMain extends JFrame {
 
     private void botonAgregarVotantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarVotantesActionPerformed
         try {
-            String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del votante: ");
-            int run = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese el RUT del votante: "));
-            String comuna = JOptionPane.showInputDialog(this, "Ingrese la comuna del votante: ");
+            //Solicitar el RUN del votante
+            String runInput = JOptionPane.showInputDialog(this, "Ingrese el RUN del votante:");
             
+            //Si se cancela la operación...
+            if (runInput == null) {
+                JOptionPane.showMessageDialog(this, "Operación cancelada");
+                return; //Sale del método para no continuar
+            }
+            
+            //Validar que el RUN no esté vacío
+            if (runInput.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El RUN debe ser rellenado.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            int run = Integer.parseInt(runInput);
+            
+            //Solicitar nombre del votante
+            String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del votante:");
+            
+            //Si se cancela la operación...
             if (nombre == null) {
                 JOptionPane.showMessageDialog(this, "Operación cancelada");
                 return;
             }
+
+            if (nombre.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El nombre debe ser rellenado.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            //Solicitar la comuna del votante
+            String comuna = JOptionPane.showInputDialog(this, "Ingrese la comuna del votante:");
             
+            //Si se cancela la operación...
+            if (comuna == null) {
+                JOptionPane.showMessageDialog(this, "Operación cancelada");
+                return;
+            }
+            
+            //Validar que la comuna no esté vacía
+            if (comuna.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El comuna debe ser rellenada.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
+            //Crear un nuevo votante y asignarlo a la comuna correspondiente
             Votante nuevoVotante = new Votante(run, nombre, comuna);
             mapaComunas.asignarVotante(nuevoVotante);
             JOptionPane.showMessageDialog(this, "Votante agregado exitosamente.");
             
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El RUN ingresado no es válido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
@@ -412,5 +462,6 @@ public class VentanaMain extends JFrame {
     private javax.swing.JButton botonMostrarTodosLosVotantes;
     private javax.swing.JButton botonMostrarVotantesComuna;
     private javax.swing.JButton botonSalir;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
