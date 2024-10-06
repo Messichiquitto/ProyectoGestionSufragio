@@ -16,7 +16,7 @@ public class Comuna {
      */
     public Comuna(String nombre){
         this.nombre = nombre;
-        this.locales = new ArrayList<>();
+        this.locales = new ArrayList<>(); // Inicializa la lista de locales como vacía
     }
     
     /**
@@ -27,7 +27,7 @@ public class Comuna {
      */
     public Comuna(String nombre, List<LocalDeSufragio> locales) {
         this.nombre = nombre;
-        this.locales = locales;
+        this.locales = locales; // Asigna la lista de locales proporcionada
     }
     
     /**
@@ -36,7 +36,7 @@ public class Comuna {
      * @param nombre Nuevo nombre de la comuna.
      */
     public void setNombre(String nombre){
-        this.nombre = nombre;
+        this.nombre = nombre; 
     }
     
     /**
@@ -54,18 +54,29 @@ public class Comuna {
      * @return Lista de locales de sufragio.
      */
     public List<LocalDeSufragio> getLocales(){
-        return new ArrayList<>(locales);
+        return new ArrayList<>(locales); // Retorna una copia de la lista de locales
     }
     
+    /**
+     * Agrega un nuevo local de sufragio a la comuna.
+     * 
+     * @param local El local de sufragio a agregar.
+     */
     public void addLocal(LocalDeSufragio local){
         locales.add(local);
     }
     
-    // Método para buscar un LocalDeSufragio por su nombre en la lista de locales
+    /**
+     * Método para buscar un LocalDeSufragio por su nombre en la lista de locales.
+     * 
+     * @param nombreLocal Nombre del local de sufragio a buscar.
+     * @return El objeto LocalDeSufragio si se encuentra, null en caso contrario.
+     */
     public LocalDeSufragio buscarLocal(String nombreLocal) {
         for (LocalDeSufragio local : locales) {
+            // Comparar el nombre del local con el nombre proporcionado
             if (local.getNombre().equals(nombreLocal)) {
-                return local;
+                return local; // Retorna el local si se encuentra
             }
         }
         return null; // Retorna null si el local no se encuentra en la lista

@@ -219,6 +219,7 @@ Fecha: 2024-10-06
         RUN: 171234567, Nombre: Fernando Ramirez
         RUN: 182345678, Nombre: Nicolas Romero
         RUN: 191234567, Nombre: Renata Bravo
+        RUN: 122345678, Nombre: Pedrito
 
 
 
