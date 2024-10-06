@@ -19,7 +19,7 @@ public class Votante extends Persona{
     
     // Se utiliza sobreescritura del metodo realizarAccion, se usa el getNombre para mantener los atributos privados
     @Override
-    public void realizarAccion(){
-        System.out.println(getNombre() + " está votando en la comuna "+ comuna);
+    public String realizarAccion(){
+         return getNombre() + " está votando en la comuna "+ comuna + ".";
     }
 }

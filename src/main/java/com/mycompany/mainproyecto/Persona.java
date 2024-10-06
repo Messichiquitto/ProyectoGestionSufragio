@@ -24,8 +24,8 @@ public class Persona {
     public String getNombre(){
         return nombre;
     }
-    
-    public void realizarAccion(){
-        System.out.println(nombre + " fue registrado como votante de manera exitosa");
+ 
+    public String realizarAccion(){
+        return nombre + " fue registrado como votante de manera exitosa";
     }
 }
