@@ -1,4 +1,4 @@
-package com.mycompany.mainproyecto;
+package com.mycompany.mainproyecto.ClasesException;
 
 public class VotanteExceptions extends Exception {
     public VotanteExceptions(String mensaje) {

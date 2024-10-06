@@ -76,12 +76,8 @@ public class LocalDeSufragio {
 
     // Método para agregar un votante, solo si no está repetido y hay espacio
     public void agregarVotante(Votante votante) {
-        if (puedeAceptarVotante(votante)) {
+        if (puedeAceptarVotante(votante))
             votantes.add(votante);
-            System.out.println("Votante agregado: " + votante.getNombre());
-        } else {
-            System.out.println("No se pudo agregar al votante " + votante.getNombre());
-        }
     }
 
     // Método para eliminar un votante por su RUN
@@ -89,10 +85,7 @@ public class LocalDeSufragio {
         Votante votante = buscarVotantePorRun(run);
         if (votante != null) {
             votantes.remove(votante);
-            System.out.println("Votante eliminado: " + votante.getNombre());
             return true;
-        } else {
-            System.out.println("Votante con RUN " + run + " no encontrado.");
         }
         return false;
     }

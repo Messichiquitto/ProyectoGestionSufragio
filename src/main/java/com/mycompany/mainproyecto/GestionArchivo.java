@@ -48,7 +48,6 @@ public class GestionArchivo {
 
                 // Agregar el local a la comuna
                 comuna.addLocal(local);
-                System.out.println("Local " + capitalize(nombreLocal) + " agregado a la comuna " + capitalize(nombreComuna));
             }
         } catch (IOException e) {
             e.printStackTrace();

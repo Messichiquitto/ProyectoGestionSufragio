@@ -38,26 +38,20 @@ public class MapaComunas {
         GestionArchivo.agregarLocalesDesdeArchivo(archivoLocales, this);
     }
     
-    public void asignarVotante(Votante votante){
+    public boolean asignarVotante(Votante votante){
         String comunaVotante = votante.getComuna();
-        
+        boolean asignacion = false;
+                
         Comuna comuna = mapaComunas.get(comunaVotante);
         if(comuna != null){
-            boolean asignacion = false;
-            
             for(LocalDeSufragio local : comuna.getLocales()){
                 if(local.verificarCapacidad() && !local.votanteYaRegistrado(votante)){
                     local.agregarVotante(votante);
-                    System.out.println("Votante " + votante.getNombre() + " asignado al Local " + GestionArchivo.capitalize(local.getNombre()));
                     asignacion = true;
                     break;
                 }
             }
-            if(!asignacion){
-                System.out.println("No se puede agregar al votante " + votante.getNombre());
-            }
-        } else{
-            System.out.println("Comuna " + GestionArchivo.capitalize(comunaVotante) + " no encontrada en el mapa.");
         }
+        return asignacion;
     }
 }

@@ -1,4 +1,4 @@
-package com.mycompany.mainproyecto;
+package com.mycompany.mainproyecto.ClasesException;
 
 public class ComunaExceptions extends Exception {
     public ComunaExceptions(String message) {

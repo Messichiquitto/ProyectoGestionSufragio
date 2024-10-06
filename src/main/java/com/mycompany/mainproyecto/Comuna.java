@@ -49,15 +49,6 @@ public class Comuna {
     }
     
     /**
-     * Establece la lista de locales de sufragio de la comuna.
-     * 
-     * @param locales Nueva lista de locales de sufragio.
-     */
-    public void setLocales(List<LocalDeSufragio> locales) {
-        this.locales = locales;
-    }
-    
-    /**
      * Devuelve una copia de la lista de locales de sufragio de la comuna.
      * 
      * @return Lista de locales de sufragio.

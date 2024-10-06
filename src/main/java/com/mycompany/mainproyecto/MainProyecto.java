@@ -1,5 +1,6 @@
 package com.mycompany.mainproyecto;
     
+import com.mycompany.mainproyecto.ClasesVentanas.VentanaMain;
 import java.util.*;
 
 public class MainProyecto {

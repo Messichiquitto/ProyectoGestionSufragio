@@ -24,51 +24,45 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
-              <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="86" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="botonAgregarVotantes" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                  <Component id="botonEliminarVotante" min="-2" pref="135" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="81" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="89" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="botonModificarVotante" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="botonAgregarVotantes" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="botonEliminarVotante" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace pref="44" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="botonMostrarVotantesComuna" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="botonMostrarTodosLosVotantes" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="botonModificarVotante" min="-2" pref="158" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="botonMostrarVotantesComuna" alignment="1" max="32767" attributes="0"/>
+                  <Component id="botonMostrarTodosLosVotantes" alignment="1" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="botonSalir" min="-2" pref="83" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="botonAgregarVotantes" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="botonAgregarVotantes" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="botonEliminarVotante" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -79,23 +73,15 @@
               <Component id="botonMostrarTodosLosVotantes" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="botonSalir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="botonAgregarVotantes">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1.- Agregar Votantes"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarVotantesActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="botonEliminarVotante">
       <Properties>
-        <Property name="text" type="java.lang.String" value="2.- Eliminar Votante"/>
+        <Property name="text" type="java.lang.String" value="Eliminar Votante"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliminarVotanteActionPerformed"/>
@@ -103,7 +89,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonModificarVotante">
       <Properties>
-        <Property name="text" type="java.lang.String" value="3.- Modificar Votante"/>
+        <Property name="text" type="java.lang.String" value="Modificar Votante"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonModificarVotanteActionPerformed"/>
@@ -111,7 +97,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonMostrarVotantesComuna">
       <Properties>
-        <Property name="text" type="java.lang.String" value="4.- Mostrar Votantes de una Comuna"/>
+        <Property name="text" type="java.lang.String" value="Mostrar Votantes de una Comuna"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonMostrarVotantesComunaActionPerformed"/>
@@ -119,7 +105,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonMostrarTodosLosVotantes">
       <Properties>
-        <Property name="text" type="java.lang.String" value="5.- Mostrar todos los Votantes"/>
+        <Property name="text" type="java.lang.String" value="Mostrar todos los Votantes"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonMostrarTodosLosVotantesActionPerformed"/>
@@ -127,7 +113,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonSalir">
       <Properties>
-        <Property name="text" type="java.lang.String" value="6.- Salir"/>
+        <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonSalirActionPerformed"/>
@@ -135,8 +121,19 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Sistema de Gesti&#xf3;n de Votantes"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonAgregarVotantes">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar Votante"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonAgregarVotantesActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
