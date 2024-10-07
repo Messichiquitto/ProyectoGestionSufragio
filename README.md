@@ -10,7 +10,7 @@ Al ejecutar el programa, el usuario se encontrará con una ventana que presenta 
 
 3. Modificar Votante: Este botón permite modificar la información de un votante. Para ello, el usuario deberá ingresar su RUN y la comuna original. Luego podrá ingresar su nuevo nombre, la nueva comuna y un local de sufragio. Al completar esta información, el programa actualizará los datos del votante.
 
-4. Mostrar votantes de una Comuna: Como su nombre lo indica, el botón permite visualizar todos los votantes de una comuna específica. Al seleccionarlo, el programa solicitará el nombre de la comuna, y luego mostrará una ventana con la lista de votantes, incluyendo el nombre y RUN correspondiente.
+4. Buscar por Comuna e Inicial del apellido: Como su nombre lo indica, el botón permite visualizar todos los votantes de una comuna y una inicial del apellido específica. Al seleccionarlo, el programa solicitará el nombre de la comuna, luego de la inicial deseada y finalmente mostrará una ventana con la lista de votantes, incluyendo el nombre y RUN correspondiente.
 
 5. Mostrar todos los Votantes: Este botón actúa de manera similar al anterior, pero en vez de filtrar por comuna, mostrará la lista completa de todos los votantes registrados en el sistema. Al hacer 'click' en el botón, el usuario verá una ventana con todos los votantes, mostrando su nombre y RUN.
 
