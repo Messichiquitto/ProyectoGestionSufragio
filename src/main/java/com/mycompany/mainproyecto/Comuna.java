@@ -20,17 +20,6 @@ public class Comuna {
     }
     
     /**
-     * Constructor sobrecargado que inicializa la comuna con un nombre y una lista de locales.
-     * 
-     * @param nombre Nombre de la comuna.
-     * @param locales Lista de locales de sufragio pertenecientes a la comuna.
-     */
-    public Comuna(String nombre, List<LocalDeSufragio> locales) {
-        this.nombre = nombre;
-        this.locales = locales; // Asigna la lista de locales proporcionada
-    }
-    
-    /**
      * Establece el nombre de la comuna.
      * 
      * @param nombre Nuevo nombre de la comuna.
