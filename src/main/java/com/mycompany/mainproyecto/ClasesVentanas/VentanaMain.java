@@ -34,12 +34,12 @@ public class VentanaMain extends JFrame {
         jPanel1 = new javax.swing.JPanel();
         botonEliminarVotante = new javax.swing.JButton();
         botonModificarVotante = new javax.swing.JButton();
-        botonMostrarVotantesComuna = new javax.swing.JButton();
+        botonMostrarPorInicial = new javax.swing.JButton();
         botonMostrarTodosLosVotantes = new javax.swing.JButton();
         botonSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         botonAgregarVotantes = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        BotonAsignarVocal = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,10 +68,10 @@ public class VentanaMain extends JFrame {
             }
         });
 
-        botonMostrarVotantesComuna.setText("Mostrar Votantes de una Comuna");
-        botonMostrarVotantesComuna.addActionListener(new java.awt.event.ActionListener() {
+        botonMostrarPorInicial.setText("Buscar por Comuna e Inicial de apellido");
+        botonMostrarPorInicial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonMostrarVotantesComunaActionPerformed(evt);
+                botonMostrarPorInicialActionPerformed(evt);
             }
         });
 
@@ -99,10 +99,10 @@ public class VentanaMain extends JFrame {
             }
         });
 
-        jButton1.setText("Asignar Vocal de Mesa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonAsignarVocal.setText("Asignar Vocal de Mesa");
+        BotonAsignarVocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonAsignarVocalActionPerformed(evt);
             }
         });
 
@@ -111,30 +111,31 @@ public class VentanaMain extends JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonAgregarVotantes, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonEliminarVotante, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(16, 16, 16))
+                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(111, 111, 111))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botonMostrarVotantesComuna, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botonMostrarTodosLosVotantes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(45, 45, 45))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonModificarVotante, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botonMostrarPorInicial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(botonMostrarTodosLosVotantes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                                .addComponent(BotonAsignarVocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(19, 19, 19)))
+                    .addComponent(jLabel1))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,11 +149,11 @@ public class VentanaMain extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonModificarVotante)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonMostrarVotantesComuna)
+                .addComponent(botonMostrarPorInicial)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonMostrarTodosLosVotantes)
                 .addGap(5, 5, 5)
-                .addComponent(jButton1)
+                .addComponent(BotonAsignarVocal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonSalir)
                 .addGap(33, 33, 33))
@@ -180,22 +181,23 @@ public class VentanaMain extends JFrame {
             
             //Solicitar la comuna
             String comunaEliminar = JOptionPane.showInputDialog(this, "Ingrese la Comuna del votante a eliminar:");
-            comunaEliminar = comunaEliminar.toLowerCase();
             
             //Verificar si la comuna es válida
             Comuna comunaEliminarObj = mapaComunas.getComuna(comunaEliminar);
             if (comunaEliminarObj == null) {
                 throw new ComunaExceptions(ComunaExceptions.getMensajeComunaNoEncontrada());
             }
+            comunaEliminar = comunaEliminar.toLowerCase();
             
             //Solicitar el nombre del local
             String localEliminar = JOptionPane.showInputDialog(this, "Ingrese el nombre del local del votante a eliminar:");
-            localEliminar = localEliminar.toLowerCase();
+            
             //Verificar si el local de sufragio es válido
             LocalDeSufragio localEliminarObj = comunaEliminarObj.buscarLocal(localEliminar);
             if (localEliminarObj == null) {
                 throw new ComunaExceptions(ComunaExceptions.getMensajeErrorLocalNoEncontrado());
             }
+            localEliminar = localEliminar.toLowerCase();
             
             if (localEliminarObj.eliminarVotante(run)) {
                 JOptionPane.showMessageDialog(this, "Votante eliminado exitosamente.");
@@ -264,11 +266,25 @@ public class VentanaMain extends JFrame {
             
             //Solicitar nuevos datos para modificar
             String nombreNuevo = JOptionPane.showInputDialog(this, "Ingrese el nuevo nombre del votante:");
-            String comunaNueva = JOptionPane.showInputDialog(this, "Ingrese la nueva comuna:");
-            String localNuevo = JOptionPane.showInputDialog(this, "Ingrese el nuevo local de sufragio del votante:");
+            if (nombreNuevo.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No se ingresó un nombre");
+                return;
+            }
             
+            String comunaNueva = JOptionPane.showInputDialog(this, "Ingrese la nueva comuna:");
+            if (comunaNueva.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No se ingresó una comuna");
+                return;
+            }
             comunaNueva = comunaNueva.toLowerCase();
+            
+            String localNuevo = JOptionPane.showInputDialog(this, "Ingrese el nuevo local de sufragio del votante:");
+            if (localNuevo.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No se ingresó un local");
+                return;
+            }
             localNuevo = localNuevo.toLowerCase();
+            
             //Actualizar nombre/comuna del votante
             votanteEncontrado.setNombre(nombreNuevo);
             votanteEncontrado.setComuna(comunaNueva);
@@ -301,17 +317,25 @@ public class VentanaMain extends JFrame {
         }
     }//GEN-LAST:event_botonModificarVotanteActionPerformed
 
-    private void botonMostrarVotantesComunaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarVotantesComunaActionPerformed
+    private void botonMostrarPorInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarPorInicialActionPerformed
         try {
             //Pedir nombre de la comuna
             String comunaMostrar = JOptionPane.showInputDialog(this, "Ingrese el nombre de la comuna para mostrar los votantes:");
             
             
             //Si se cancela la operación...
-            if (comunaMostrar == null) {
+            if (comunaMostrar == null || comunaMostrar.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Operación cancelada");
                 return;
             }
+            
+            // Pedir la letra para filtrar los apellidos
+            String letraStr = JOptionPane.showInputDialog(this, "Ingrese la letra inicial del apellido para filtrar:");
+            if (letraStr == null || letraStr.length() != 1) {
+                JOptionPane.showMessageDialog(this, "Operación cancelada o entrada inválida");
+                return;
+            }
+            char letra = letraStr.toLowerCase().charAt(0); // Convertir a minúscula para evitar problemas de mayúsculas/minúsculas
             
             //Si la comuna existe
             comunaMostrar = comunaMostrar.toLowerCase();
@@ -333,8 +357,14 @@ public class VentanaMain extends JFrame {
             //Recorrer los locales y obtener los votantes
             for (LocalDeSufragio local : locales) {
                 List<Votante> votantes = local.getVotantes();
-                votantesTotales.addAll(votantes);
+                for (Votante votante : votantes) {
+                    // Verificar si el apellido del votante comienza con la letra ingresada
+                    if (!votante.getNombre(letra).isEmpty() && !votantesTotales.contains(votante)) {
+                        votantesTotales.add(votante);
+                    }
+                }
             }
+            
             
             //Crear JTable para así mostrar los votantes
             String [] columnNames = {"Run", "Nombre"};
@@ -356,7 +386,7 @@ public class VentanaMain extends JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_botonMostrarVotantesComunaActionPerformed
+    }//GEN-LAST:event_botonMostrarPorInicialActionPerformed
 
     private void botonMostrarTodosLosVotantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarTodosLosVotantesActionPerformed
         try {
@@ -376,6 +406,8 @@ public class VentanaMain extends JFrame {
                     todosLosVotantes.addAll(votantes);
                 }
             }
+            
+            
             
             //Crear JTable para mostrar todos los votantes
             String[] columnNames = {"RUN", "Nombre"};
@@ -437,6 +469,16 @@ public class VentanaMain extends JFrame {
             return;
         }
         
+        // Verificar si el votante ya está registrado en algún local
+        for (Comuna comuna : mapaComunas.getMapaComunas().values()) {
+            for (LocalDeSufragio local : comuna.getLocales()) {
+                if(local.votanteYaRegistrado(run)){
+                    JOptionPane.showMessageDialog(this, "El RUN ya está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+            }
+        }
+        
         // Solicitar nombre del votante
         String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del votante:");
 
@@ -468,7 +510,7 @@ public class VentanaMain extends JFrame {
         JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);}
     }//GEN-LAST:event_botonAgregarVotantesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotonAsignarVocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAsignarVocalActionPerformed
         try {
             String runInput = JOptionPane.showInputDialog(this, "Ingrese el RUN del votante: ");
             if (runInput == null || runInput.trim().isEmpty()) {
@@ -525,17 +567,17 @@ public class VentanaMain extends JFrame {
         }catch(Exception e){
              JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotonAsignarVocalActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonAsignarVocal;
     private javax.swing.JButton botonAgregarVotantes;
     private javax.swing.JButton botonEliminarVotante;
     private javax.swing.JButton botonModificarVotante;
+    private javax.swing.JButton botonMostrarPorInicial;
     private javax.swing.JButton botonMostrarTodosLosVotantes;
-    private javax.swing.JButton botonMostrarVotantesComuna;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
