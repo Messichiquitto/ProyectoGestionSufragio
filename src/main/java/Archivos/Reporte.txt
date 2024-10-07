@@ -98,25 +98,6 @@ Fecha: 2024-10-06
         RUN: 216596595, Nombre: Benjamin Peredo
         RUN: 123456789, Nombre: Ana Morales
         RUN: 126789012, Nombre: Jose Martinez
-        RUN: 130123456, Nombre: Manuel Soto
-        RUN: 134567890, Nombre: Raul Ramirez
-        RUN: 138901234, Nombre: Gerardo Fernandez
-        RUN: 143456789, Nombre: Carla Romero
-        RUN: 146789012, Nombre: Tomas Perez
-        RUN: 149012345, Nombre: Lucia Lopez
-        RUN: 152345678, Nombre: Javier Diaz
-        RUN: 155678901, Nombre: Leonardo Salazar
-        RUN: 158901234, Nombre: Patricia Sanchez
-        RUN: 162345678, Nombre: Natalia Gonzalez
-        RUN: 165678901, Nombre: Marcelo Diaz
-        RUN: 168901234, Nombre: Laura Gonzalez
-        RUN: 172345678, Nombre: Maria Jose Lopez
-        RUN: 175678901, Nombre: Ricardo Perez
-        RUN: 178901234, Nombre: Christian Soto
-        RUN: 181234567, Nombre: Valentina Diaz
-        RUN: 185678901, Nombre: Felipe Silva
-        RUN: 188901234, Nombre: Matias Rivas
-        RUN: 192345678, Nombre: Gonzalo Soto
 
 
 
@@ -199,27 +180,15 @@ Fecha: 2024-10-06
         RUN: 171234567, Nombre: Fernando Ramirez
         RUN: 182345678, Nombre: Nicolas Romero
         RUN: 191234567, Nombre: Renata Bravo
-        RUN: 122345678, Nombre: Pedro Silva
-        RUN: 125678901, Nombre: Luz Herrera
+        RUN: 123412345, Nombre: Prueba Pruebosa
 
 ---------------------------------------------------------
     Local de Sufragio: I
 ---------------------------------------------------------
-        RUN: 131234567, Nombre: Patricia Salazar
-        RUN: 135678901, Nombre: Isabel Campos
-        RUN: 139012345, Nombre: Veronica Munoz
-        RUN: 142345678, Nombre: Jorge Perez
-        RUN: 148901234, Nombre: Roberto Herrera
 
 ---------------------------------------------------------
     Local de Sufragio: J
 ---------------------------------------------------------
-        RUN: 151234567, Nombre: Silvia Munoz
-        RUN: 161234567, Nombre: Esteban Soto
-        RUN: 171234567, Nombre: Fernando Ramirez
-        RUN: 182345678, Nombre: Nicolas Romero
-        RUN: 191234567, Nombre: Renata Bravo
-        RUN: 122345678, Nombre: Pedrito
 
 
 
