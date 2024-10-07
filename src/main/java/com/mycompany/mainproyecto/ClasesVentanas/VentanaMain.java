@@ -13,12 +13,21 @@ import javax.swing.*;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Clase VentanaMain que representa la ventana principal del sistema de gestión de votantes.
+ * Esta clase permite realizar diversas operaciones como agregar, modificar y eliminar votantes.
+ */
 public class VentanaMain extends JFrame {
     private MapaComunas mapaComunas;
     private static final String archivoLocales = "src/main/java/archivos/arLocales.csv";
     private static final String archivoVotantes = "src/main/java/archivos/arVotantes.csv";
     private static final String archivoReporte = "src/main/java/archivos/Reporte.txt";
     
+    /**
+     * Constructor de la clase VentanaMain.
+     *
+     * @param mapaComunas El mapa de comunas que contiene los votantes y locales.
+     */
     public VentanaMain(MapaComunas mapaComunas) {
         this.mapaComunas = mapaComunas;
         List<Votante> votantesTotales = new ArrayList<Votante>();
@@ -26,7 +35,10 @@ public class VentanaMain extends JFrame {
     }
     
    
-   
+    /**
+     * Inicializa los componentes de la ventana.
+     * Este método configura todos los elementos visuales y su comportamiento.
+     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -161,7 +173,13 @@ public class VentanaMain extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
+    /**
+     * Acción realizada al presionar el botón para eliminar un votante.
+     * Solicita el RUN del votante y la comuna y elimina al votante de la lista.
+     *
+     * @param evt El evento que ocurre al presionar el botón.
+     */
     private void botonEliminarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarVotanteActionPerformed
         try {
             //Funcionamiento del botón eliminar votantes
@@ -173,13 +191,15 @@ public class VentanaMain extends JFrame {
                 return;
             }
             
+            // Validar que el RUN ingresado tenga 9 caracteres
             if (runInput.length() != 9) {
                 throw new VotanteExceptions(VotanteExceptions.getMensajeRutInvalido());
             }
             
+            // Convertir el RUN ingresado a un número entero
             int run = Integer.parseInt(runInput);
             
-            //Solicitar la comuna
+            // Solicitar al usuario la comuna del votante a eliminar
             String comunaEliminar = JOptionPane.showInputDialog(this, "Ingrese la Comuna del votante a eliminar:");
             
             //Verificar si la comuna es válida
@@ -199,48 +219,60 @@ public class VentanaMain extends JFrame {
             }
             localEliminar = localEliminar.toLowerCase();
             
+            // Intentar eliminar al votante y mostrar un mensaje de resultado
             if (localEliminarObj.eliminarVotante(run)) {
                 JOptionPane.showMessageDialog(this, "Votante eliminado exitosamente.");
             } else {
                 JOptionPane.showMessageDialog(this, "No se encontró un votante con el RUN ingresado.");
             }
         } catch (NumberFormatException e) {
+            // Manejar error de formato de número para el RUN
             JOptionPane.showMessageDialog(this, "El RUN ingresado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (VotanteExceptions e) {
+            // Manejar excepciones relacionadas con votantes
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (ComunaExceptions e) {
+            // Manejar excepciones relacionadas con comunas
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
+            // Manejar cualquier otro error inesperado
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonEliminarVotanteActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para modificar los datos de un votante.
+     * Solicita el RUN del votante y otros datos para actualizar su información.
+     *
+     * @param evt El evento que ocurre al presionar el botón.
+     */
     private void botonModificarVotanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarVotanteActionPerformed
         try {
-            //Solicitar RUT del votante a modificar
+            //Solicitar RUN del votante a modificar
             String runInput = JOptionPane.showInputDialog(this, "Ingrese el RUN del votante que quiere modificar:");
             
-            //Si se cancela la operación...
+            // Verificar si el usuario cancela la operación
             if (runInput == null) {
                 JOptionPane.showMessageDialog(this, "Operación cancelada");
                 return;
             }
             
-            //Validar el RUT
+            // Validar que el RUN ingresado tenga 9 caracteres
             if (runInput.length() != 9) {
                 throw new VotanteExceptions(VotanteExceptions.getMensajeRutInvalido());
             }
             
+            // Convertir el RUN a número
             int runModificar = Integer.parseInt(runInput);
             
             //Solicitar la comuna actual
             String comunaActual = JOptionPane.showInputDialog(this, "Ingrese la comuna del votante:");
-            
             if (comunaActual == null) {
                 JOptionPane.showMessageDialog(this, "Operación cancelada");
                 return;
             }
-            comunaActual = comunaActual.toLowerCase();
+            comunaActual = comunaActual.toLowerCase(); // Convertir a minúsculas
+            
             //Buscar la comuna dentro del mapa
             Comuna comunaOrigen = mapaComunas.getComuna(comunaActual);
             if (comunaOrigen == null) {
@@ -255,11 +287,12 @@ public class VentanaMain extends JFrame {
             for (LocalDeSufragio local : comunaOrigen.getLocales()) {
                 votanteEncontrado = local.buscarVotantePorRun(runModificar);
                 if (votanteEncontrado != null) {
-                    localOrigen = local;
+                    localOrigen = local; // Guardar el local donde se encontró el votante
                     break;
                 }
             }
             
+            // Verificar si se encontró al votante
             if (votanteEncontrado == null) {
                 throw new VotanteExceptions("Votante no encontrado con el RUN especificado dentro de la comuna.");
             }
@@ -276,20 +309,20 @@ public class VentanaMain extends JFrame {
                 JOptionPane.showMessageDialog(this, "No se ingresó una comuna");
                 return;
             }
-            comunaNueva = comunaNueva.toLowerCase();
+            comunaNueva = comunaNueva.toLowerCase(); // Convertir a minúsculas
             
             String localNuevo = JOptionPane.showInputDialog(this, "Ingrese el nuevo local de sufragio del votante:");
             if (localNuevo.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "No se ingresó un local");
                 return;
             }
-            localNuevo = localNuevo.toLowerCase();
+            localNuevo = localNuevo.toLowerCase(); // Convertir a minúsculas
             
             //Actualizar nombre/comuna del votante
             votanteEncontrado.setNombre(nombreNuevo);
             votanteEncontrado.setComuna(comunaNueva);
             
-            //Eliminar del local actual
+            //Eliminar al votante del local actual
             localOrigen.eliminarVotante(runModificar);
             
             //Asignar al nuevo local
@@ -303,27 +336,38 @@ public class VentanaMain extends JFrame {
                 throw new ComunaExceptions("No se pudo agregar al votante al nuevo local.");
             }
             
+            // Agregar al votante al nuevo local
             localDestino.agregarVotante(votanteEncontrado);
             JOptionPane.showMessageDialog(this, "Votante movido al nuevo local de sufragio en " + comunaNueva + ".");
             
         } catch (NumberFormatException e) {
+            // Manejar error de formato de número para el RUN
             JOptionPane.showMessageDialog(this, "El RUN ingresado no es válido.", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (VotanteExceptions e) {
+            // Manejar excepciones relacionadas con votantes
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (ComunaExceptions e) {
+            // Manejar excepciones relacionadas con comunas
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
+            // Manejar cualquier otro error inesperado
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " +e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonModificarVotanteActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para mostrar votantes de una comuna filtrados por la letra inicial de su apellido.
+     * Solicita el nombre de la comuna y la letra inicial del apellido para mostrar los votantes que cumplen con esos criterios.
+     *
+     * @param evt El evento que ocurre al presionar el botón.
+     */
     private void botonMostrarPorInicialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarPorInicialActionPerformed
         try {
             //Pedir nombre de la comuna
             String comunaMostrar = JOptionPane.showInputDialog(this, "Ingrese el nombre de la comuna para mostrar los votantes:");
             
             
-            //Si se cancela la operación...
+            // Verificar si el usuario cancela la operación o deja el campo vacío
             if (comunaMostrar == null || comunaMostrar.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Operación cancelada");
                 return;
@@ -337,7 +381,7 @@ public class VentanaMain extends JFrame {
             }
             char letra = letraStr.toLowerCase().charAt(0); // Convertir a minúscula para evitar problemas de mayúsculas/minúsculas
             
-            //Si la comuna existe
+            // Verificar si la comuna existe
             comunaMostrar = comunaMostrar.toLowerCase();
             Comuna comunaMostrarObj = mapaComunas.getComuna(comunaMostrar);
             if (comunaMostrarObj == null) {
@@ -360,7 +404,7 @@ public class VentanaMain extends JFrame {
                 for (Votante votante : votantes) {
                     // Verificar si el apellido del votante comienza con la letra ingresada
                     if (!votante.getNombre(letra).isEmpty() && !votantesTotales.contains(votante)) {
-                        votantesTotales.add(votante);
+                        votantesTotales.add(votante); // Agregar votante a la lista
                     }
                 }
             }
@@ -370,24 +414,34 @@ public class VentanaMain extends JFrame {
             String [] columnNames = {"Run", "Nombre"};
             Object[][] data = new Object[votantesTotales.size()][2];
             
+            // Llenar la tabla con los datos de los votantes
             for (int i = 0 ; i < votantesTotales.size() ; i++) {
-                data[i][0] = votantesTotales.get(i).getRun();
-                data[i][1] = votantesTotales.get(i).getNombre();
+                data[i][0] = votantesTotales.get(i).getRun(); // Obtener RUN
+                data[i][1] = votantesTotales.get(i).getNombre(); // Obtener nombre
             }
             
-            JTable tabla = new JTable(data, columnNames);
-            JScrollPane scrollPane = new JScrollPane(tabla);
+            JTable tabla = new JTable(data, columnNames); // Crear la tabla
+            JScrollPane scrollPane = new JScrollPane(tabla); // Crear un JScrollPane para la tabla
             
             //Mostrar la JTable
             JOptionPane.showMessageDialog(this, scrollPane, "Votantes de la Comuna: " + GestionArchivo.capitalize(comunaMostrar), JOptionPane.PLAIN_MESSAGE);
             
         } catch (ComunaExceptions e) {
+            // Manejar excepciones relacionadas con comunas
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
+            // Manejar cualquier otro error inesperado
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonMostrarPorInicialActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para mostrar todos los votantes de todas las comunas.
+     * Si no hay comunas disponibles, se lanza una excepción. 
+     * Los votantes se muestran en una tabla dentro de un JOptionPane.
+     *
+     * @param evt El evento que ocurre al presionar el botón.
+     */
     private void botonMostrarTodosLosVotantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMostrarTodosLosVotantesActionPerformed
         try {
             //Verificar si el mapa de Comunas está vacío
@@ -402,35 +456,45 @@ public class VentanaMain extends JFrame {
             for (Comuna comuna : mapaComunas.getMapaComunas().values()) {
                 //Recorrer todos los locales de las comunas
                 for (LocalDeSufragio local : comuna.getLocales()) {
-                    List<Votante> votantes = local.getVotantes();
-                    todosLosVotantes.addAll(votantes);
+                    List<Votante> votantes = local.getVotantes(); // Obtener votantes del local
+                    todosLosVotantes.addAll(votantes); // Agregar votantes a la lista total
                 }
             }
             
             
             
             //Crear JTable para mostrar todos los votantes
-            String[] columnNames = {"RUN", "Nombre"};
-            Object[][] data = new Object[todosLosVotantes.size()][2];
+            String[] columnNames = {"RUN", "Nombre"}; // Nombres de las columnas
+            Object[][] data = new Object[todosLosVotantes.size()][2]; // Crear matriz de datos
             
+            // Llenar la matriz de datos con información de los votantes
             for (int i = 0 ; i < todosLosVotantes.size() ; i++) {
-                data[i][0] = todosLosVotantes.get(i).getRun();
-                data[i][1] = todosLosVotantes.get(i).getNombre();
+                data[i][0] = todosLosVotantes.get(i).getRun(); // Obtener RUN
+                data[i][1] = todosLosVotantes.get(i).getNombre(); // Obtener nombre
             }
             
-            JTable table = new JTable(data, columnNames);
-            JScrollPane scrollPane = new JScrollPane(table);
+            JTable table = new JTable(data, columnNames); // Crear la tabla
+            JScrollPane scrollPane = new JScrollPane(table); // Crear un JScrollPane para la tabla
             
             //Mostrar el JTable en un JOptionPane
             JOptionPane.showMessageDialog(this, scrollPane, "Todos los Votantes", JOptionPane.PLAIN_MESSAGE);
             
         } catch (ComunaExceptions e) {
+            // Manejar excepciones relacionadas con comunas
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
+            // Manejar cualquier otro error inesperado
             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonMostrarTodosLosVotantesActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón de salir de la aplicación.
+     * Se solicita confirmación al usuario antes de cerrar la aplicación.
+     * Se guarda la información de votantes y locales antes de salir.
+     *
+     * @param evt El evento que ocurre al presionar el botón.
+     */
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         try {
             //Mensaje para confirmar si desea salir
@@ -444,12 +508,21 @@ public class VentanaMain extends JFrame {
                 System.exit(0); //Termina la aplicación
             }
         } catch (NullPointerException e) {
+            // Manejo de excepciones en caso de un error de puntero nulo
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         } catch (Exception e) {
+            // Manejar cualquier otro error inesperado
             JOptionPane.showMessageDialog(this, "Ocurrió un error al salir: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_botonSalirActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para agregar votantes.
+     * Solicita los datos del votante y los registra en el sistema,
+     * verificando que el RUN no esté duplicado.
+     *
+     * @param evt El evento que ocurre al presionar el botón.
+     */
     private void botonAgregarVotantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarVotantesActionPerformed
         try {
         // Solicitar el RUN del votante
@@ -505,57 +578,68 @@ public class VentanaMain extends JFrame {
         else
             JOptionPane.showMessageDialog(this, "Votante NO se pudo agregar.");
     } catch (IllegalArgumentException e) {
+        // Manejo de excepciones específicas de argumento ilegal
         JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     } catch (Exception e) {
+        // Manejo de cualquier otro error inesperado
         JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);}
     }//GEN-LAST:event_botonAgregarVotantesActionPerformed
 
+    /**
+     * Acción realizada al presionar el botón para asignar un vocal de mesa o votante.
+     * Solicita los datos del votante y crea un objeto correspondiente según la elección del usuario.
+     *
+     * @param evt El evento que ocurre al presionar el botón.
+     */
     private void BotonAsignarVocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAsignarVocalActionPerformed
         try {
+            // Solicitar el RUN del votante
             String runInput = JOptionPane.showInputDialog(this, "Ingrese el RUN del votante: ");
             if (runInput == null || runInput.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Operación cancelada o RUN no proporcionado");
                 return;
             }
             
+            // Verificar la longitud del RUN
             if (runInput.length() != 9) {
                  throw new VotanteExceptions(VotanteExceptions.getMensajeRutInvalido());
             }
             
             int run;
             try{
-                run = Integer.parseInt(runInput);                
+                run = Integer.parseInt(runInput); // Validar si es un número              
             }catch (NumberFormatException e){
                 JOptionPane.showMessageDialog(this, "El RUN debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             
-             String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del votante:");
-             if (nombre == null){
-                 JOptionPane.showMessageDialog(this, "Operación cancelada");
-                 return;
-             }
-             nombre = nombre.toLowerCase();
+            // Solicitar nombre del votante
+            String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre del votante:");
             if (nombre == null || nombre.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Operación cancelada o nombre no proporcionado");
                 return;
             }
+            nombre = nombre.toLowerCase(); // Convertir a minúscula
             
+            // Solicitar la comuna del votante
             String comuna = JOptionPane.showInputDialog(this, "Ingrese la comuna del votante:");            
             if (comuna == null || comuna.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Operación cancelada o comuna no proporcionada");
                 return;
             }
-            comuna = comuna.toLowerCase();
+            comuna = comuna.toLowerCase(); // Convertir a minúscula
             
+            // Verificar si la comuna existe
             Comuna comunaOrigen = mapaComunas.getComuna(comuna);
             if (comunaOrigen == null){
                 throw new ComunaExceptions(ComunaExceptions.getMensajeComunaNoEncontrada());
             }
             
+            // Preguntar al usuario si desea asignar vocal de mesa
             int respuestaVocal = JOptionPane.showConfirmDialog(this, "¿Asignar Vocal de Mesa?", "Vocal de Mesa", JOptionPane.YES_NO_OPTION);
             boolean esVocal = (respuestaVocal == JOptionPane.YES_OPTION);
             
+            // Crear objeto correspondiente según la elección
             Persona persona;
             if(esVocal){
                 persona = new VocalDeMesa(run, nombre, comuna, esVocal);
@@ -563,9 +647,11 @@ public class VentanaMain extends JFrame {
                 persona = new Votante(run, nombre, comuna);
             }
             
+            // Mostrar mensaje con la acción realizada
             JOptionPane.showMessageDialog(this, persona.realizarAccion());
         }catch(Exception e){
-             JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            // Manejo de cualquier error inesperado
+            JOptionPane.showMessageDialog(this, "Ocurrió un error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BotonAsignarVocalActionPerformed
 
