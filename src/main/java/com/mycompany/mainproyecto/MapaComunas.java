@@ -31,19 +31,6 @@ public class MapaComunas {
     }
     
     /**
-     * Sobrecarga del método para obtener una nueva comuna con el nombre y una lista de locales.
-     * 
-     * @param nombre Nombre de la comuna a crear.
-     * @param locales Lista de locales de sufragio asociados a la comuna.
-     * @return La nueva comuna creada y almacenada en el mapa.
-     */
-    public Comuna getComuna(String nombre, List<LocalDeSufragio> locales) {
-        Comuna comuna = new Comuna(nombre, locales);
-        mapaComunas.put(nombre, comuna);
-        return comuna;
-    }
-    
-    /**
      * Obtiene una copia del mapa de comunas.
      * 
      * @return Un nuevo mapa que contiene todas las comunas actuales.
